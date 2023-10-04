@@ -15,5 +15,5 @@ export default function SmallFilmCard ({imgSrc, title}: SmallFilmCardProps): JSX
                 <a className="small-film-card__link" href="film-page.html">{title}</a>
             </h3>
         </article>
-    )
+    );
 }
