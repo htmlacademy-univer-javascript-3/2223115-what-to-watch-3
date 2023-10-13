@@ -3,7 +3,7 @@ import SmallFilmCard from '../../components/small-film-card/small-film-card';
 import { SmallFilmCardProps } from '../../components/small-film-card/small-film-card-props';
 import { MainScreenProps } from './main-screen-props';
 
-export default function MainScreen ({filmCard, smallFilmCards}: MainScreenProps): JSX.Element {
+export default function MainScreen({filmCard, smallFilmCards}: MainScreenProps): JSX.Element {
   return (
     <>
       <FilmCard
@@ -70,6 +70,7 @@ export default function MainScreen ({filmCard, smallFilmCards}: MainScreenProps)
             {smallFilmCards.map((smallFilmCard: SmallFilmCardProps) =>
               (
                 <SmallFilmCard
+                  key={smallFilmCard.id}
                   imgSrc={smallFilmCard.imgSrc}
                   title={smallFilmCard.title}
                 />

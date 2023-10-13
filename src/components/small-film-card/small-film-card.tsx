@@ -1,6 +1,6 @@
 import { SmallFilmCardProps } from './small-film-card-props';
 
-export default function SmallFilmCard ({imgSrc, title}: SmallFilmCardProps): JSX.Element {
+export default function SmallFilmCard({imgSrc, title}: SmallFilmCardProps): JSX.Element {
   return (
     <article className="small-film-card catalog__films-card">
       <div className="small-film-card__image">
