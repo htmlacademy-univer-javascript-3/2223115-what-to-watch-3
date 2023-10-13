@@ -1,6 +1,11 @@
+import { Helmet } from "react-helmet-async";
+
 export default function MyListScreen(): JSX.Element {
   return (
     <div className="user-page">
+      <Helmet>
+        <title>WTW: Мой список фильмов</title>
+      </Helmet>
       <header className="page-header user-page__head">
         <div className="logo">
           <a href="main.html" className="logo__link">

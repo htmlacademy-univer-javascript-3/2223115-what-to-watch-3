@@ -1,6 +1,11 @@
+import { Helmet } from "react-helmet-async";
+
 export default function AddReviewScreen(): JSX.Element {
   return (
     <section className="film-card film-card--full">
+      <Helmet>
+        <title>WTW: Оценка фильма</title>
+      </Helmet>
       <div className="film-card__header">
         <div className="film-card__bg">
           <img
