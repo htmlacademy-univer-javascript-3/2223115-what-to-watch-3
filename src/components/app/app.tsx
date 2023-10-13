@@ -1,6 +1,7 @@
 import { AppProps } from './app-props';
-import { AppRoute } from '../../const/const';
+import { AppRoute, AuthorizationStatus } from '../../const/const';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import PrivateRoute from '../private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
 import MainScreen from '../../pages/main-screen/main-screen';
 import SignInScreen from '../../pages/sign-in-screen/sign-in-screen';
@@ -24,7 +25,11 @@ export default function App({filmCard, smallFilmCards}: AppProps): JSX.Element {
           />
           <Route
             path={AppRoute.MyList}
-            element={<MyListScreen/>}
+            element={
+              <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+                <MyListScreen/>
+              </PrivateRoute>
+            }
           />
           <Route
             path={AppRoute.Film}
