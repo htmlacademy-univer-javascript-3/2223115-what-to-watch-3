@@ -41,6 +41,10 @@ export default function App({filmCard, smallFilmCards}: AppProps): JSX.Element {
             element={<AddReviewScreen/>}
           />
           <Route
+            path={AppRoute.Player}
+            element={<PlayerScreen/>}
+          />
+          <Route
             path={AppRoute.NotFound}
             element={<NotFoundScreen/>}
           />

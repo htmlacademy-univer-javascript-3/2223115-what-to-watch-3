@@ -1,4 +1,4 @@
-import { AuthorizationStatus } from "../../const/const"
+import { AuthorizationStatus } from '../../const/const';
 
 export type PrivateRouteProps = {
   authorizationStatus: AuthorizationStatus;
