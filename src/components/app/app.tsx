@@ -9,6 +9,7 @@ import MyListScreen from '../../pages/my-list-screen/my-list-screen';
 import FilmScreen from '../../pages/film-screen/film-screen';
 import AddReviewScreen from '../../pages/add-review-screen/add-review-screen';
 import PlayerScreen from '../../pages/player-screen/player-screen';
+import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 
 export default function App({filmCard, smallFilmCards}: AppProps): JSX.Element {
   return (
@@ -40,8 +41,8 @@ export default function App({filmCard, smallFilmCards}: AppProps): JSX.Element {
             element={<AddReviewScreen/>}
           />
           <Route
-            path={AppRoute.Player}
-            element={<PlayerScreen/>}
+            path={AppRoute.NotFound}
+            element={<NotFoundScreen/>}
           />
         </Routes>
       </BrowserRouter>
