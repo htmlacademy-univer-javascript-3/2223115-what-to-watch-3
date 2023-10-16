@@ -1,6 +1,11 @@
-export default function SignInScreen (): JSX.Element {
+import { Helmet } from 'react-helmet-async';
+
+export default function SignInScreen(): JSX.Element {
   return (
     <div className="user-page">
+      <Helmet>
+        <title>WTW: Авторизация</title>
+      </Helmet>
       <header className="page-header user-page__head">
         <div className="logo">
           <a href="main.html" className="logo__link">

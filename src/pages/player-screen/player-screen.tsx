@@ -1,6 +1,11 @@
-export default function PlayerScreen (): JSX.Element {
+import { Helmet } from 'react-helmet-async';
+
+export default function PlayerScreen(): JSX.Element {
   return (
     <div className="player">
+      <Helmet>
+        <title>WTW: Плеер</title>
+      </Helmet>
       <video src="#" className="player__video" poster="img/player-poster.jpg" />
       <button type="button" className="player__exit">
                 Exit
