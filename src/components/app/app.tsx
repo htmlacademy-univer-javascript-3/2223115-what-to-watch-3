@@ -1,5 +1,5 @@
 import { AppProps } from './app-props';
-import { AppRoute, AuthorizationStatus } from '../../const/const';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import PrivateRoute from '../private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
