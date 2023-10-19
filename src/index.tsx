@@ -14,14 +14,14 @@ const appData: AppProps = {
     genre: 'Drama',
     date: '2014',
   },
-  smallFilmCards: films,
+  filmCards: films,
 };
 
 root.render(
   <React.StrictMode>
     <App
       promoFilmCard={appData.promoFilmCard}
-      smallFilmCards={appData.smallFilmCards}
+      filmCards={appData.filmCards}
     />
   </React.StrictMode>
 );

@@ -1,7 +1,7 @@
 import { FilmCardProps } from '../film-card/film-card-props';
-import { SmallFilmCardProps } from '../small-film-card/small-film-card-props';
+import { Film } from '../../types/films';
 
 export type AppProps = {
     promoFilmCard: FilmCardProps;
-    smallFilmCards: SmallFilmCardProps[];
+    filmCards: Film[];
 }
