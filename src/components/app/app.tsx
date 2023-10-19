@@ -27,8 +27,8 @@ export default function App({promoFilmCard, filmCards}: AppProps): JSX.Element {
           <Route
             path={AppRoute.MyList}
             element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-                <MyListScreen/>
+              <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+                <MyListScreen filmCards={filmCards}/>
               </PrivateRoute>
             }
           />

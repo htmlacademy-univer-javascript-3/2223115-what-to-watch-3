@@ -13,4 +13,5 @@ export type Film = {
   reviewsCount: number;
   director: string;
   starring: string[];
+  isFavorite: boolean;
 }

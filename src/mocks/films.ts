@@ -16,6 +16,7 @@ export const films: Film[] = [
     reviewsCount: 240,
     director: 'Wes Anderson',
     starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe'],
+    isFavorite: true,
   },
   {
     id: '1',
@@ -32,6 +33,7 @@ export const films: Film[] = [
     reviewsCount: 250,
     director: 'David Yates',
     starring: ['Eddie Redmayne', 'Johnny Depp', 'Katherine Waterston', 'Jude Law'],
+    isFavorite: true,
   },
   {
     id: '2',
@@ -48,6 +50,7 @@ export const films: Film[] = [
     reviewsCount: 300,
     director: 'Bryan Singer',
     starring: ['Rami Malek', 'Lucy Boynton', 'Gwilym Lee',],
+    isFavorite: true
   },
   {
     id: '3',
@@ -64,6 +67,7 @@ export const films: Film[] = [
     reviewsCount: 40,
     director: 'Justin Kurzel',
     starring: ['Michael Fassbender', 'Marion Cotillard', 'Paddy Considine', 'Sean Harris'],
+    isFavorite: false,
   },
   {
     id: '4',
@@ -80,6 +84,7 @@ export const films: Film[] = [
     reviewsCount: 243,
     director: 'Martin Scorsese',
     starring: ['Leonardo DiCaprio', 'Cate Blanchett', 'Matt Ross'],
+    isFavorite: false,
   },
   {
     id: '5',
@@ -96,6 +101,7 @@ export const films: Film[] = [
     reviewsCount: 97,
     director: 'Lynn Ramsey',
     starring: ['Tilda Swinton', 'John C Riley', 'Ezra Miller'],
+    isFavorite: false,
   },
   {
     id: '6',
@@ -112,6 +118,7 @@ export const films: Film[] = [
     reviewsCount: 130,
     director: 'Yana Gorskaya',
     starring: ['Kayvan Novak', 'Matt Berry', 'Natasia Demetriou'],
+    isFavorite: false,
   },
   {
     id: '7',
@@ -128,5 +135,6 @@ export const films: Film[] = [
     reviewsCount: 321,
     director: 'Alejandro Gonzalez Inarritu',
     starring: ['Leonardo DiCaprio', 'Tom Hardy', 'Domhnall Gleeson', 'Will Poulter'],
+    isFavorite: true,
   },
 ];
