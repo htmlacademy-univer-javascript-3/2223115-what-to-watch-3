@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import FilmCard from '../../components/promo-film-card/promo-film-card';
-import SmallFilmCard from '../../components/small-film-card/small-film-card';
-import { SmallFilmCardProps } from '../../components/small-film-card/small-film-card-props';
+import FilmsList from '../../components/films-list/films-list';
 import { MainScreenProps } from './main-screen-props';
 
 export default function MainScreen({promoFilmCard, smallFilmCards}: MainScreenProps): JSX.Element {
@@ -70,17 +69,7 @@ export default function MainScreen({promoFilmCard, smallFilmCards}: MainScreenPr
               </a>
             </li>
           </ul>
-          <div className="catalog__films-list">
-            {smallFilmCards.map((smallFilmCard: SmallFilmCardProps) =>
-              (
-                <SmallFilmCard
-                  key={smallFilmCard.id}
-                  posterImage={smallFilmCard.posterImage}
-                  name={smallFilmCard.name}
-                />
-              )
-            )}
-          </div>
+          <FilmsList smallFilmCards={smallFilmCards}/>
           <div className="catalog__more">
             <button className="catalog__button" type="button">
                     Show more
