@@ -11,14 +11,14 @@ import AddReviewScreen from '../../pages/add-review-screen/add-review-screen';
 import PlayerScreen from '../../pages/player-screen/player-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 
-export default function App({filmCard, smallFilmCards}: AppProps): JSX.Element {
+export default function App({promoFilmCard, smallFilmCards}: AppProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<MainScreen filmCard={filmCard} smallFilmCards={smallFilmCards}/>}
+            element={<MainScreen promoFilmCard={promoFilmCard} smallFilmCards={smallFilmCards}/>}
           />
           <Route
             path={AppRoute.SignIn}

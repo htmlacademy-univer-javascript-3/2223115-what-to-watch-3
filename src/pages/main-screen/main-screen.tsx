@@ -4,16 +4,16 @@ import SmallFilmCard from '../../components/small-film-card/small-film-card';
 import { SmallFilmCardProps } from '../../components/small-film-card/small-film-card-props';
 import { MainScreenProps } from './main-screen-props';
 
-export default function MainScreen({filmCard, smallFilmCards}: MainScreenProps): JSX.Element {
+export default function MainScreen({promoFilmCard, smallFilmCards}: MainScreenProps): JSX.Element {
   return (
     <>
       <Helmet>
         <title>WTW: Главная страница</title>
       </Helmet>
       <FilmCard
-        title={filmCard.title}
-        genre={filmCard.genre}
-        date={filmCard.date}
+        name={promoFilmCard.name}
+        genre={promoFilmCard.genre}
+        date={promoFilmCard.date}
       />
       <div className="page-content">
         <section className="catalog">
@@ -75,8 +75,8 @@ export default function MainScreen({filmCard, smallFilmCards}: MainScreenProps):
               (
                 <SmallFilmCard
                   key={smallFilmCard.id}
-                  imgSrc={smallFilmCard.imgSrc}
-                  title={smallFilmCard.title}
+                  posterImage={smallFilmCard.posterImage}
+                  name={smallFilmCard.name}
                 />
               )
             )}

@@ -1,6 +1,6 @@
 import { FilmCardProps } from './film-card-props';
 
-export default function FilmCard({title, genre, date}: FilmCardProps): JSX.Element{
+export default function FilmCard({name, genre, date}: FilmCardProps): JSX.Element{
   return (
     <section className="film-card">
       <div className="film-card__bg">
@@ -45,7 +45,7 @@ export default function FilmCard({title, genre, date}: FilmCardProps): JSX.Eleme
             />
           </div>
           <div className="film-card__desc">
-            <h2 className="film-card__title">{title}</h2>
+            <h2 className="film-card__title">{name}</h2>
             <p className="film-card__meta">
               <span className="film-card__genre">{genre}</span>
               <span className="film-card__year">{date}</span>

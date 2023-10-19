@@ -1,5 +1,5 @@
 export type FilmCardProps = {
-    title: string;
+    name: string;
     genre: string;
     date: string;
 }

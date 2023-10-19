@@ -1,5 +1,3 @@
-export type SmallFilmCardProps = {
-    id?: number;
-    imgSrc: string;
-    title: string;
-}
+import { Film } from "../../types/films";
+
+export type SmallFilmCardProps = Film
