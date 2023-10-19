@@ -2,7 +2,7 @@ import { Film } from '../types/films';
 
 export const films: Film[] = [
   {
-    id: 0,
+    id: '0',
     name: 'The Grand Budapest Hotel',
     genre: 'Drama',
     date: '2014',
@@ -18,7 +18,7 @@ export const films: Film[] = [
     starring: ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe'],
   },
   {
-    id: 1,
+    id: '1',
     name: 'Fantastic Beasts: The Crimes of Grindelwald',
     genre: 'Fantasy',
     date: '2018',
@@ -34,7 +34,7 @@ export const films: Film[] = [
     starring: ['Eddie Redmayne', 'Johnny Depp', 'Katherine Waterston', 'Jude Law'],
   },
   {
-    id: 2,
+    id: '2',
     name: 'Bohemian Rhapsody',
     genre: 'Biography',
     date: '2018',
@@ -50,7 +50,7 @@ export const films: Film[] = [
     starring: ['Rami Malek', 'Lucy Boynton', 'Gwilym Lee',],
   },
   {
-    id: 3,
+    id: '3',
     name: 'Macbeth',
     genre: 'Drama',
     date: '2015',
@@ -66,7 +66,7 @@ export const films: Film[] = [
     starring: ['Michael Fassbender', 'Marion Cotillard', 'Paddy Considine', 'Sean Harris'],
   },
   {
-    id: 4,
+    id: '4',
     name: 'Aviator',
     genre: '2004',
     date: 'Drama',
@@ -82,7 +82,7 @@ export const films: Film[] = [
     starring: ['Leonardo DiCaprio', 'Cate Blanchett', 'Matt Ross'],
   },
   {
-    id: 5,
+    id: '5',
     name: 'We need to talk about Kevin',
     genre: 'Thriller',
     date: '2010',
@@ -98,7 +98,7 @@ export const films: Film[] = [
     starring: ['Tilda Swinton', 'John C Riley', 'Ezra Miller'],
   },
   {
-    id: 6,
+    id: '6',
     name: 'What We Do in the Shadows',
     genre: 'Comedy',
     date: '2019',
@@ -114,7 +114,7 @@ export const films: Film[] = [
     starring: ['Kayvan Novak', 'Matt Berry', 'Natasia Demetriou'],
   },
   {
-    id: 7,
+    id: '7',
     name: 'Revenant',
     genre: 'Adventures',
     date: '2015',
