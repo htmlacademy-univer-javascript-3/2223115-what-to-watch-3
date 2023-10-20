@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { MyListProps } from './my-list-screen-props';
 import FilmsList from '../../components/films-list/films-list';
+import Footer from '../../components/footer/footer';
 
 export default function MyListScreen({filmCards}: MyListProps): JSX.Element {
   const myFilmCards = filmCards.filter((film) => film.isFavorite === true);
@@ -35,18 +36,7 @@ export default function MyListScreen({filmCards}: MyListProps): JSX.Element {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
         <FilmsList smallFilmCards={myFilmCards}/>
       </section>
-      <footer className="page-footer">
-        <div className="logo">
-          <a href="main.html" className="logo__link logo__link--light">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
-        <div className="copyright">
-          <p>© 2019 What to watch Ltd.</p>
-        </div>
-      </footer>
+      <Footer/>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { PromoFilmCardProps } from './promo-film-card-props';
 import Header from '../header/header';
 
-export default function FilmCard({name, genre, date}: PromoFilmCardProps): JSX.Element{
+export default function PromoFilmCard({name, genre, date}: PromoFilmCardProps): JSX.Element{
   return (
     <section className="film-card">
       <div className="film-card__bg">
@@ -11,7 +11,7 @@ export default function FilmCard({name, genre, date}: PromoFilmCardProps): JSX.E
         />
       </div>
       <h1 className="visually-hidden">WTW</h1>
-      <Header />
+      <Header/>
       <div className="film-card__wrap">
         <div className="film-card__info">
           <div className="film-card__poster">
