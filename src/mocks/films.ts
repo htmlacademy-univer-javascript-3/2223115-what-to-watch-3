@@ -42,7 +42,7 @@ export const films: Film[] = [
     date: '2018',
     posterImage: 'img/bohemian-rhapsody.jpg',
     backgroundImage: 'img/bg-bohemian-rhapsody.jpg',
-    backgroundColor: '#c277d1',
+    backgroundColor: '#8f6832',
     videoLink:'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
     description: 'Celebrating Queen, their music and their extraordinary vocalist Freddie Mercury, who defied stereotypes and defied convention to become one of the most beloved artists on the planet.',
     time: 134,

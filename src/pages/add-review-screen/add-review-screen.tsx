@@ -1,16 +1,22 @@
 import { Helmet } from 'react-helmet-async';
+import { AddReviewScreenProps } from './add-review-screen-props';
+import { useParams } from 'react-router-dom';
+import { Film } from '../../types/films';
 
-export default function AddReviewScreen(): JSX.Element {
+export default function AddReviewScreen({filmCards}: AddReviewScreenProps): JSX.Element {
+  const {id} = useParams();
+  const currentFilm = filmCards.find((film) => film.id === id) as Film;
+
   return (
-    <section className="film-card film-card--full">
+    <section className="film-card film-card--full" style={{backgroundColor: currentFilm.backgroundColor}}>
       <Helmet>
-        <title>WTW: Оценка фильма</title>
+        <title>WTW: Оценка {currentFilm.name}</title>
       </Helmet>
       <div className="film-card__header">
         <div className="film-card__bg">
           <img
-            src="img/bg-the-grand-budapest-hotel.jpg"
-            alt="The Grand Budapest Hotel"
+            src={currentFilm.backgroundImage}
+            alt={currentFilm.name}
           />
         </div>
         <h1 className="visually-hidden">WTW</h1>
@@ -25,9 +31,7 @@ export default function AddReviewScreen(): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="film-page.html" className="breadcrumbs__link">
-                        The Grand Budapest Hotel
-                </a>
+                <a href="film-page.html" className="breadcrumbs__link">{currentFilm.name}</a>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -52,8 +56,8 @@ export default function AddReviewScreen(): JSX.Element {
         </header>
         <div className="film-card__poster film-card__poster--small">
           <img
-            src="img/the-grand-budapest-hotel-poster.jpg"
-            alt="The Grand Budapest Hotel poster"
+            src={currentFilm.posterImage}
+            alt={`${currentFilm.name }poster`}
             width={218}
             height={327}
           />

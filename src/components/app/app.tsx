@@ -36,10 +36,13 @@ export default function App({promoFilmCard, filmCards}: AppProps): JSX.Element {
             path={AppRoute.Film}
             element={<FilmScreen/>}
           />
-          <Route
-            path={AppRoute.AddReview}
-            element={<AddReviewScreen/>}
-          />
+          <Route path={AppRoute.Film}>
+            <Route index element={<NotFoundScreen/>}/>
+            <Route path=':id'>
+              <Route index element={<FilmScreen/>}/>
+              <Route path={AppRoute.AddReview} element={<AddReviewScreen filmCards={filmCards}/>}/>
+            </Route>
+          </Route>
           <Route path={AppRoute.Player}>
             <Route index element={<NotFoundScreen/>}/>
             <Route path=':id' element={<PlayerScreen filmCards={filmCards}/>}/>
