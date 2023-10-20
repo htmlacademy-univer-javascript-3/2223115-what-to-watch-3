@@ -18,7 +18,7 @@ export default function FilmsList({smallFilmCards}: FilmsListProps): JSX.Element
         >
           <SmallFilmCard
             id={smallFilmCard.id}
-            posterImage={smallFilmCard.posterImage}
+            promoImage={smallFilmCard.promoImage}
             name={smallFilmCard.name}
           />
         </article>

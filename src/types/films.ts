@@ -4,6 +4,7 @@ export type Film = {
   genre: string;
   date: string;
   posterImage: string;
+  promoImage: string;
   backgroundImage: string;
   backgroundColor: string;
   videoLink:string;
