@@ -1,12 +1,18 @@
 import { Helmet } from 'react-helmet-async';
+import { PlayerScreenProps } from './player-screen-props';
+import { useParams } from 'react-router-dom';
+import { Film } from '../../types/films';
 
-export default function PlayerScreen(): JSX.Element {
+export default function PlayerScreen({filmCards}: PlayerScreenProps): JSX.Element {
+  const {id} = useParams();
+  const currentFilm = filmCards.find((film) => film.id === id) as Film;
+
   return (
     <div className="player">
       <Helmet>
-        <title>WTW: Плеер</title>
+        <title>WTW: Плеер {currentFilm.name}</title>
       </Helmet>
-      <video src="#" className="player__video" poster="img/player-poster.jpg" />
+      <video src={currentFilm.videoLink} className="player__video" poster={currentFilm.posterImage} />
       <button type="button" className="player__exit">
                 Exit
       </button>
