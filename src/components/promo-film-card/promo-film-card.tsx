@@ -1,7 +1,10 @@
 import { PromoFilmCardProps } from './promo-film-card-props';
-import Header from '../header/header';
+import Logo from '../logo/logo';
+import { AppRoute } from '../../const';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function PromoFilmCard({name, genre, date}: PromoFilmCardProps): JSX.Element{
+  const navigate = useNavigate();
   return (
     <section className="film-card">
       <div className="film-card__bg">
@@ -11,13 +14,30 @@ export default function PromoFilmCard({name, genre, date}: PromoFilmCardProps): 
         />
       </div>
       <h1 className="visually-hidden">WTW</h1>
-      <Header/>
+      <header className="page-header film-card__head">
+        <Logo/>
+        <ul className="user-block">
+          <li className="user-block__item">
+            <div className="user-block__avatar">
+              <img
+                src="img/avatar.jpg"
+                alt="User avatar"
+                width={63}
+                height={63}
+              />
+            </div>
+          </li>
+          <li className="user-block__item">
+            <Link to={AppRoute.SignIn}className="user-block__link">Sign out</Link>
+          </li>
+        </ul>
+      </header>
       <div className="film-card__wrap">
         <div className="film-card__info">
           <div className="film-card__poster">
             <img
               src="img/the-grand-budapest-hotel-poster.jpg"
-              alt="The Grand Budapest Hotel poster"
+              alt={`${name} poster`}
               width={218}
               height={327}
             />
@@ -29,7 +49,10 @@ export default function PromoFilmCard({name, genre, date}: PromoFilmCardProps): 
               <span className="film-card__year">{date}</span>
             </p>
             <div className="film-card__buttons">
-              <button className="btn btn--play film-card__button" type="button">
+              <button className="btn btn--play film-card__button" type="button" onClick={() => {
+                navigate(`${AppRoute.Player}/0`);
+              }}
+              >
                 <svg viewBox="0 0 19 19" width={19} height={19}>
                   <use xlinkHref="#play-s" />
                 </svg>

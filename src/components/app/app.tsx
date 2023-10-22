@@ -1,8 +1,8 @@
 import { AppProps } from './app-props';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import PrivateRoute from '../private-route/private-route';
 import { HelmetProvider } from 'react-helmet-async';
+import PrivateRoute from '../private-route/private-route';
 import MainScreen from '../../pages/main-screen/main-screen';
 import SignInScreen from '../../pages/sign-in-screen/sign-in-screen';
 import MyListScreen from '../../pages/my-list-screen/my-list-screen';

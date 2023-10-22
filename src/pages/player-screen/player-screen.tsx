@@ -1,11 +1,13 @@
 import { Helmet } from 'react-helmet-async';
 import { PlayerScreenProps } from './player-screen-props';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Film } from '../../types/films';
+import { AppRoute } from '../../const';
 
 export default function PlayerScreen({filmCards}: PlayerScreenProps): JSX.Element {
   const {id} = useParams();
   const currentFilm = filmCards.find((film) => film.id === id) as Film;
+  const navigate = useNavigate();
 
   return (
     <div className="player">
@@ -13,7 +15,7 @@ export default function PlayerScreen({filmCards}: PlayerScreenProps): JSX.Elemen
         <title>WTW: Плеер {currentFilm.name}</title>
       </Helmet>
       <video src={currentFilm.videoLink} className="player__video" poster={currentFilm.posterImage} />
-      <button type="button" className="player__exit">
+      <button type="button" className="player__exit" onClick={() => navigate(`/${AppRoute.Film}/${id}`)}>
                 Exit
       </button>
       <div className="player__controls">

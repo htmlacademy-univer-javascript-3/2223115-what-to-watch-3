@@ -1,13 +1,15 @@
 import { Helmet } from 'react-helmet-async';
-import { useParams } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { FilmScreenProps } from './film-screen-props';
 import { Film } from '../../types/films';
 import Footer from '../../components/footer/footer';
-import Header from '../../components/header/header';
+import Logo from '../../components/logo/logo';
+import { AppRoute } from '../../const';
 
 export default function FilmScreen({filmCards}: FilmScreenProps): JSX.Element {
   const {id} = useParams();
   const currentFilm = filmCards.find((film) => film.id === id) as Film;
+  const navigate = useNavigate();
 
   return (
     <>
@@ -23,7 +25,24 @@ export default function FilmScreen({filmCards}: FilmScreenProps): JSX.Element {
             />
           </div>
           <h1 className="visually-hidden">WTW</h1>
-          <Header/>
+          <header className="page-header film-card__head">
+            <Logo/>
+            <ul className="user-block">
+              <li className="user-block__item">
+                <div className="user-block__avatar">
+                  <img
+                    src="img/avatar.jpg"
+                    alt="User avatar"
+                    width={63}
+                    height={63}
+                  />
+                </div>
+              </li>
+              <li className="user-block__item">
+                <Link to={`/${AppRoute.SignIn}`} className="user-block__link">Sign out</Link>
+              </li>
+            </ul>
+          </header>
           <div className="film-card__wrap">
             <div className="film-card__desc">
               <h2 className="film-card__title">{currentFilm.name}</h2>
@@ -32,7 +51,10 @@ export default function FilmScreen({filmCards}: FilmScreenProps): JSX.Element {
                 <span className="film-card__year">{currentFilm.date}</span>
               </p>
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
+                <button className="btn btn--play film-card__button" type="button" onClick={() => {
+                  navigate(`/${AppRoute.Player}/${id}`);
+                }}
+                >
                   <svg viewBox="0 0 19 19" width={19} height={19}>
                     <use xlinkHref="#play-s" />
                   </svg>
@@ -45,9 +67,9 @@ export default function FilmScreen({filmCards}: FilmScreenProps): JSX.Element {
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <a href="add-review.html" className="btn film-card__button">
+                <Link to={`${AppRoute.AddReview}`} className="btn film-card__button">
                         Add review
-                </a>
+                </Link>
               </div>
             </div>
           </div>
