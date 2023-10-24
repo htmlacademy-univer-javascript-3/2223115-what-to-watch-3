@@ -15,7 +15,7 @@ export default function PlayerScreen({filmCards}: PlayerScreenProps): JSX.Elemen
         <title>WTW: Плеер {currentFilm.name}</title>
       </Helmet>
       <video src={currentFilm.videoLink} className="player__video" poster={currentFilm.posterImage} />
-      <button type="button" className="player__exit" onClick={() => navigate(`/${AppRoute.Film}/${id}`)}>
+      <button type="button" className="player__exit" onClick={() => navigate(`/${AppRoute.Film}/${currentFilm.id}`)}>
                 Exit
       </button>
       <div className="player__controls">

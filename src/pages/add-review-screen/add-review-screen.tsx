@@ -33,7 +33,7 @@ export default function AddReviewScreen({filmCards}: AddReviewScreenProps): JSX.
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={`/${AppRoute.Film}/${id}`} className="breadcrumbs__link">{currentFilm.name}</Link>
+                <Link to={`/${AppRoute.Film}/${currentFilm.id}`} className="breadcrumbs__link">{currentFilm.name}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
