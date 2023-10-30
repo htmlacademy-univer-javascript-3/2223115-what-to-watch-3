@@ -1,6 +1,10 @@
-import { FilmCardProps } from './film-card-props';
+import { PromoFilmCardProps } from './promo-film-card-props';
+import Logo from '../logo/logo';
+import { AppRoute } from '../../const';
+import { Link, useNavigate } from 'react-router-dom';
 
-export default function FilmCard({title, genre, date}: FilmCardProps): JSX.Element{
+export default function PromoFilmCard({name, genre, date}: PromoFilmCardProps): JSX.Element{
+  const navigate = useNavigate();
   return (
     <section className="film-card">
       <div className="film-card__bg">
@@ -11,13 +15,7 @@ export default function FilmCard({title, genre, date}: FilmCardProps): JSX.Eleme
       </div>
       <h1 className="visually-hidden">WTW</h1>
       <header className="page-header film-card__head">
-        <div className="logo">
-          <a className="logo__link">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
+        <Logo/>
         <ul className="user-block">
           <li className="user-block__item">
             <div className="user-block__avatar">
@@ -30,7 +28,7 @@ export default function FilmCard({title, genre, date}: FilmCardProps): JSX.Eleme
             </div>
           </li>
           <li className="user-block__item">
-            <a className="user-block__link">Sign out</a>
+            <Link to={AppRoute.SignIn}className="user-block__link">Sign out</Link>
           </li>
         </ul>
       </header>
@@ -39,19 +37,22 @@ export default function FilmCard({title, genre, date}: FilmCardProps): JSX.Eleme
           <div className="film-card__poster">
             <img
               src="img/the-grand-budapest-hotel-poster.jpg"
-              alt="The Grand Budapest Hotel poster"
+              alt={`${name} poster`}
               width={218}
               height={327}
             />
           </div>
           <div className="film-card__desc">
-            <h2 className="film-card__title">{title}</h2>
+            <h2 className="film-card__title">{name}</h2>
             <p className="film-card__meta">
               <span className="film-card__genre">{genre}</span>
               <span className="film-card__year">{date}</span>
             </p>
             <div className="film-card__buttons">
-              <button className="btn btn--play film-card__button" type="button">
+              <button className="btn btn--play film-card__button" type="button" onClick={() => {
+                navigate(`${AppRoute.Player}/0`);
+              }}
+              >
                 <svg viewBox="0 0 19 19" width={19} height={19}>
                   <use xlinkHref="#play-s" />
                 </svg>

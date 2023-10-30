@@ -1,5 +1,5 @@
 export type SmallFilmCardProps = {
-    id?: number;
-    imgSrc: string;
-    title: string;
+  id: string;
+  name: string;
+  promoImage: string;
 }
