@@ -48,7 +48,7 @@ export default function FilmScreen({filmCards}: FilmScreenProps): JSX.Element {
               <h2 className="film-card__title">{currentFilm.name}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">{currentFilm.genre}</span>
-                <span className="film-card__year">{currentFilm.date}</span>
+                <span className="film-card__year">{currentFilm.released}</span>
               </p>
               <div className="film-card__buttons">
                 <button className="btn btn--play film-card__button" type="button" onClick={() => {
@@ -108,7 +108,7 @@ export default function FilmScreen({filmCards}: FilmScreenProps): JSX.Element {
                 <div className="film-rating__score">{currentFilm.rating}</div>
                 <p className="film-rating__meta">
                   <span className="film-rating__level">Very good</span>
-                  <span className="film-rating__count">{currentFilm.reviewsCount} ratings</span>
+                  <span className="film-rating__count">{currentFilm.scoresCount} ratings</span>
                 </p>
               </div>
               <div className="film-card__text">

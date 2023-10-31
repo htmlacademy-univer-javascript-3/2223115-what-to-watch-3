@@ -13,7 +13,7 @@ export default function MainScreen({promoFilmCard, smallFilmCards}: MainScreenPr
       <PromoFilmCard
         name={promoFilmCard.name}
         genre={promoFilmCard.genre}
-        date={promoFilmCard.date}
+        released={promoFilmCard.released}
       />
       <div className="page-content">
         <section className="catalog">
