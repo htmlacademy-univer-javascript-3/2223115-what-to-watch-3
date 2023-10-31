@@ -19,7 +19,7 @@ export default function FilmsList({smallFilmCards}: FilmsListProps): JSX.Element
   };
 
   const handleFilmMouseLeave = () => {
-    setIdActiveFilm('')
+    setIdActiveFilm('');
     setIdActiveVideo('');
     clearTimeout(timeoutRef.current as NodeJS.Timeout);
   };
