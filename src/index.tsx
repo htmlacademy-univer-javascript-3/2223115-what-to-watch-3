@@ -12,7 +12,7 @@ const appData: AppProps = {
   promoFilmCard: {
     name: 'The Grand Budapest Hotel',
     genre: 'Drama',
-    date: '2014',
+    released: '2014',
   },
   filmCards: films,
 };

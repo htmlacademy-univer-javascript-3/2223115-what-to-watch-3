@@ -3,7 +3,7 @@ import Logo from '../logo/logo';
 import { AppRoute } from '../../const';
 import { Link, useNavigate } from 'react-router-dom';
 
-export default function PromoFilmCard({name, genre, date}: PromoFilmCardProps): JSX.Element{
+export default function PromoFilmCard({name, genre, released}: PromoFilmCardProps): JSX.Element{
   const navigate = useNavigate();
   return (
     <section className="film-card">
@@ -46,7 +46,7 @@ export default function PromoFilmCard({name, genre, date}: PromoFilmCardProps): 
             <h2 className="film-card__title">{name}</h2>
             <p className="film-card__meta">
               <span className="film-card__genre">{genre}</span>
-              <span className="film-card__year">{date}</span>
+              <span className="film-card__year">{released}</span>
             </p>
             <div className="film-card__buttons">
               <button className="btn btn--play film-card__button" type="button" onClick={() => {
