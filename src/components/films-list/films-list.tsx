@@ -7,17 +7,20 @@ import { AppRoute } from '../../const';
 
 export default function FilmsList({smallFilmCards}: FilmsListProps): JSX.Element {
   const [idActiveFilm, setIdActiveFilm] = useState('');
+  const [idActiveVideo, setIdActiveVideo] = useState('');
   const navigate = useNavigate();
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleFilmMouseOver = (id: string) => {
+    setIdActiveFilm(id);
     timeoutRef.current = setTimeout(() => {
-      setIdActiveFilm(id);
+      setIdActiveVideo(id);
     }, 1000);
   };
 
   const handleFilmMouseLeave = () => {
-    setIdActiveFilm('');
+    setIdActiveFilm('')
+    setIdActiveVideo('');
     clearTimeout(timeoutRef.current as NodeJS.Timeout);
   };
 
@@ -27,7 +30,7 @@ export default function FilmsList({smallFilmCards}: FilmsListProps): JSX.Element
         <article className="small-film-card catalog__films-card"
           key={smallFilmCard.id}
           onMouseOver={() => handleFilmMouseOver(smallFilmCard.id)}
-          onMouseLeave={() => handleFilmMouseLeave}
+          onMouseLeave={handleFilmMouseLeave}
           onClick={() => navigate(`/${AppRoute.Film}/${idActiveFilm}`)}
         >
           <SmallFilmCard
@@ -35,7 +38,7 @@ export default function FilmsList({smallFilmCards}: FilmsListProps): JSX.Element
             previewImage={smallFilmCard.previewImage}
             previewVideoLink={smallFilmCard.previewVideoLink}
             name={smallFilmCard.name}
-            isActive={idActiveFilm === smallFilmCard.id}
+            isActiveVideo={idActiveVideo === smallFilmCard.id}
           />
         </article>
       )

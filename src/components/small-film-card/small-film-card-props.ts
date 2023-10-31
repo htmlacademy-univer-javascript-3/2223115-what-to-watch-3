@@ -3,5 +3,5 @@ export type SmallFilmCardProps = {
   name: string;
   previewImage: string;
   previewVideoLink: string;
-  isActive: boolean;
+  isActiveVideo?: boolean;
 }
