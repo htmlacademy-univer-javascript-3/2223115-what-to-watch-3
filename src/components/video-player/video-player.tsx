@@ -1,10 +1,10 @@
 import { VideoPlayerProps } from './video-player-props';
 
-export default function VideoPlayer({previewVideoLink, posterImage}: VideoPlayerProps): JSX.Element {
+export default function VideoPlayer({previewVideoLink, previewImage}: VideoPlayerProps): JSX.Element {
   return (
     <video
       src={previewVideoLink}
-      poster={posterImage}
+      poster={previewImage}
       muted
       loop
       autoPlay
