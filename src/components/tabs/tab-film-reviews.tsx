@@ -98,6 +98,5 @@ export default function FilmReviews(): JSX.Element {
         </div>
       </div>
     </div>
-
   );
 }
