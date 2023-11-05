@@ -1,41 +1,50 @@
-export default function FilmDetails(): JSX.Element {
+type FilmDetailsProps = {
+  director: string;
+  starring: string[];
+  runTime: number;
+  genre: string;
+  released: string;
+}
+
+const getRunTime = (runTime: number) => {
+  const hours = Math.floor(runTime / 60);
+  const minutes = runTime - hours * 60;
+  return `${hours}h ${minutes}m`;
+};
+
+export default function FilmDetails({director, starring, runTime, genre, released}: FilmDetailsProps): JSX.Element {
   return (
     <div className="film-card__text film-card__row">
       <div className="film-card__text-col">
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Director</strong>
-          <span className="film-card__details-value">Wes Anderson</span>
+          <span className="film-card__details-value">{director}</span>
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Starring</strong>
           <span className="film-card__details-value">
-            Bill Murray, <br />
-            Edward Norton, <br />
-            Jude Law, <br />
-            Willem Dafoe, <br />
-            Saoirse Ronan, <br />
-            Tony Revoloru, <br />
-            Tilda Swinton, <br />
-            Tom Wilkinson, <br />
-            Owen Wilkinson, <br />
-            Adrien Brody, <br />
-            Ralph Fiennes, <br />
-            Jeff Goldblum
+            {starring.map((star, index) =>
+              (
+                index === starring.length - 1
+                  ? <span key={`id-${star}`}>{star}</span>
+                  : <span key={`id-${star}`}>{star}, <br/></span>
+              )
+            )}
           </span>
         </p>
       </div>
       <div className="film-card__text-col">
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Run Time</strong>
-          <span className="film-card__details-value">1h 39m</span>
+          <span className="film-card__details-value">{getRunTime(runTime)}</span>
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Genre</strong>
-          <span className="film-card__details-value">Comedy</span>
+          <span className="film-card__details-value">{genre}</span>
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Released</strong>
-          <span className="film-card__details-value">2014</span>
+          <span className="film-card__details-value">{released}</span>
         </p>
       </div>
     </div>
