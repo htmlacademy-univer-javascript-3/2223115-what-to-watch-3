@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { PlayerScreenProps } from './player-screen-props';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Film } from '../../types/films';
+import { Film } from '../../types/film';
 import { AppRoute } from '../../const';
 
 export default function PlayerScreen({filmCards}: PlayerScreenProps): JSX.Element {

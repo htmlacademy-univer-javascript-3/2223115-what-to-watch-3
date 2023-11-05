@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { FilmScreenProps } from './film-screen-props';
-import { Film } from '../../types/films';
+import { Film } from '../../types/film';
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
 import { AppRoute } from '../../const';
