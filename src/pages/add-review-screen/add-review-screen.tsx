@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { AddReviewScreenProps } from './add-review-screen-props';
 import ReviewsForm from '../../components/review-form/review-form';
 import { useParams, Link } from 'react-router-dom';
-import { Film } from '../../types/films';
+import { Film } from '../../types/film';
 import { AppRoute } from '../../const';
 
 export default function AddReviewScreen({filmCards}: AddReviewScreenProps): JSX.Element {
