@@ -50,6 +50,7 @@ export default function Tabs({film, reviews}: TabsProps): JSX.Element{
   const handleReviewsLinkClick = () => {
     setActiveTab(
       <FilmReviews
+        id={film.id}
         reviews={reviews}
       />
     );
