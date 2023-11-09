@@ -14,10 +14,10 @@ export default function FilmsList({smallFilmCards, id, genre}: FilmsListProps): 
     ? smallFilmCards.filter((film) => film.id !== id && film.genre === genre)
     : smallFilmCards;
 
-  const handleFilmMouseOver = (id: string) => {
-    setIdActiveFilm(id);
+  const handleFilmMouseOver = (filmId: string) => {
+    setIdActiveFilm(filmId);
     timeoutRef.current = setTimeout(() => {
-      setIdActiveVideo(id);
+      setIdActiveVideo(filmId);
     }, 1000);
   };
 

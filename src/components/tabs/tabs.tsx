@@ -2,7 +2,7 @@ import cn from 'classnames';
 import FilmOverview from './tab-film-overview';
 import FilmDetails from './tab-film-details';
 import FilmReviews from './tab-film-reviews';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Film } from '../../types/film';
 import { ReviewData } from '../../types/review';
 
@@ -21,6 +21,18 @@ export default function Tabs({film, reviews}: TabsProps): JSX.Element{
       starring={film.starring}
     />);
   const [disabledLink, setDisabledLink] = useState('Overview');
+
+  useEffect(() => {
+    setActiveTab(
+      <FilmOverview
+        rating={film.rating}
+        scoresCount={film.scoresCount}
+        description={film.description}
+        director={film.director}
+        starring={film.starring}
+      />);
+    setDisabledLink('Overview');
+  }, [film.rating, film.scoresCount, film.description, film.director, film.starring]);
 
   const handleOverviewLinkClick = () => {
     setActiveTab(
@@ -44,7 +56,7 @@ export default function Tabs({film, reviews}: TabsProps): JSX.Element{
         released={film.released}
       />
     );
-    setDisabledLink('Detils');
+    setDisabledLink('Details');
   };
 
   const handleReviewsLinkClick = () => {
