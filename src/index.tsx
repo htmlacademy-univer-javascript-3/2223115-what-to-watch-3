@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 import { AppProps } from './components/app/app-props';
 import { films } from './mocks/films';
+import { store } from './store';
+import { Provider } from 'react-redux';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -19,9 +21,11 @@ const appData: AppProps = {
 
 root.render(
   <React.StrictMode>
-    <App
-      promoFilmCard={appData.promoFilmCard}
-      filmCards={appData.filmCards}
-    />
+    <Provider store={store}>
+      <App
+        promoFilmCard={appData.promoFilmCard}
+        filmCards={appData.filmCards}
+      />
+    </Provider>
   </React.StrictMode>
 );
