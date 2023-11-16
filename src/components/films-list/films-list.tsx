@@ -4,6 +4,7 @@ import { SmallFilmCardProps } from '../small-film-card/small-film-card-props';
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../const';
+import ShownMoreButton from '../show-more-button/show-more-button';
 
 const DEFAULT_COUNT_FILM = 8;
 
@@ -30,26 +31,35 @@ export default function FilmsList({smallFilmCards, id, genre}: FilmsListProps): 
     clearTimeout(timeoutRef.current as NodeJS.Timeout);
   };
 
+  const handleShownMoreClick = () => {
+    setCountShownFilm((prev) => prev + DEFAULT_COUNT_FILM);
+  };
+
   return (
-    <div className="catalog__films-list">
-      {similarFilms
-        .slice(0, countShownFilms)
-        .map((smallFilmCard: SmallFilmCardProps) => (
-          <article className="small-film-card catalog__films-card"
-            key={smallFilmCard.id}
-            onMouseOver={() => handleFilmMouseOver(smallFilmCard.id)}
-            onMouseLeave={handleFilmMouseLeave}
-            onClick={() => navigate(`/${AppRoute.Film}/${idActiveFilm}`)}
-          >
-            <SmallFilmCard
-              id={smallFilmCard.id}
-              previewImage={smallFilmCard.previewImage}
-              previewVideoLink={smallFilmCard.previewVideoLink}
-              name={smallFilmCard.name}
-              isActiveVideo={idActiveVideo === smallFilmCard.id}
-            />
-          </article>
-      ))}
-    </div>
+    <>
+      <div className="catalog__films-list">
+        {similarFilms
+          .slice(0, countShownFilms)
+          .map((smallFilmCard: SmallFilmCardProps) => (
+            <article className="small-film-card catalog__films-card"
+              key={smallFilmCard.id}
+              onMouseOver={() => handleFilmMouseOver(smallFilmCard.id)}
+              onMouseLeave={handleFilmMouseLeave}
+              onClick={() => navigate(`/${AppRoute.Film}/${idActiveFilm}`)}
+            >
+              <SmallFilmCard
+                id={smallFilmCard.id}
+                previewImage={smallFilmCard.previewImage}
+                previewVideoLink={smallFilmCard.previewVideoLink}
+                name={smallFilmCard.name}
+                isActiveVideo={idActiveVideo === smallFilmCard.id}
+              />
+            </article>
+          ))}
+      </div>
+      <div className="catalog__more" onClick={() => handleShownMoreClick()}>
+        <ShownMoreButton/>
+      </div>
+    </>
   );
 }

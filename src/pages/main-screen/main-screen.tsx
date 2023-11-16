@@ -34,11 +34,6 @@ export default function MainScreen({promoFilmCard}: MainScreenProps): JSX.Elemen
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenreList genres={genres}/>
           <FilmsList smallFilmCards={films} genre={activeGenre}/>
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">
-                    Show more
-            </button>
-          </div>
         </section>
         <Footer/>
       </div>
