@@ -18,7 +18,7 @@ export default function App({promoFilmCard, filmCards}: AppProps): JSX.Element {
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<MainScreen promoFilmCard={promoFilmCard} smallFilmCards={filmCards}/>}
+            element={<MainScreen promoFilmCard={promoFilmCard}/>}
           />
           <Route
             path={AppRoute.SignIn}

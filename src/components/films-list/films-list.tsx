@@ -10,7 +10,7 @@ export default function FilmsList({smallFilmCards, id, genre}: FilmsListProps): 
   const [idActiveVideo, setIdActiveVideo] = useState('');
   const navigate = useNavigate();
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const similarFilms = genre
+  const similarFilms = genre !== 'All genres'
     ? smallFilmCards.filter((film) => film.id !== id && film.genre === genre)
     : smallFilmCards;
 
