@@ -80,8 +80,8 @@ export const films: Film[] = [
   {
     id: '4',
     name: 'Aviator',
-    genre: '2004',
-    released: 'Drama',
+    genre: 'Drama',
+    released: '2004',
     posterImage: 'https://13.design.pages.academy/static/film/poster/Aviator.jpg',
     previewImage: 'img/aviator.jpg',
     backgroundImage: 'https://13.design.pages.academy/static/film/background/Aviator.jpg',

@@ -3,12 +3,14 @@ import Review from '../review/review';
 
 type FilmReviewsProps = {
   reviews: ReviewData[];
+  id: string;
 }
 
-export default function FilmReviews({reviews}: FilmReviewsProps): JSX.Element {
-  const separator = Math.ceil(reviews.length / 2);
-  const firstCol = reviews.slice(0, separator);
-  const secondCol = reviews.slice(separator, reviews.length);
+export default function FilmReviews({reviews, id}: FilmReviewsProps): JSX.Element {
+  const currentReviews = reviews.filter((review) => review.filmId === id);
+  const separator = Math.ceil(currentReviews.length / 2);
+  const firstCol = currentReviews.slice(0, separator);
+  const secondCol = currentReviews.slice(separator, currentReviews.length);
 
   return (
     <div className="film-card__reviews film-card__row">

@@ -5,16 +5,19 @@ import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../const';
 
-export default function FilmsList({smallFilmCards}: FilmsListProps): JSX.Element {
+export default function FilmsList({smallFilmCards, id, genre}: FilmsListProps): JSX.Element {
   const [idActiveFilm, setIdActiveFilm] = useState('');
   const [idActiveVideo, setIdActiveVideo] = useState('');
   const navigate = useNavigate();
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const similarFilms = genre !== 'All genres'
+    ? smallFilmCards.filter((film) => film.id !== id && film.genre === genre)
+    : smallFilmCards;
 
-  const handleFilmMouseOver = (id: string) => {
-    setIdActiveFilm(id);
+  const handleFilmMouseOver = (filmId: string) => {
+    setIdActiveFilm(filmId);
     timeoutRef.current = setTimeout(() => {
-      setIdActiveVideo(id);
+      setIdActiveVideo(filmId);
     }, 1000);
   };
 
@@ -26,7 +29,7 @@ export default function FilmsList({smallFilmCards}: FilmsListProps): JSX.Element
 
   return (
     <div className="catalog__films-list">
-      {smallFilmCards.map((smallFilmCard: SmallFilmCardProps) => (
+      {similarFilms.map((smallFilmCard: SmallFilmCardProps) => (
         <article className="small-film-card catalog__films-card"
           key={smallFilmCard.id}
           onMouseOver={() => handleFilmMouseOver(smallFilmCard.id)}
@@ -41,8 +44,7 @@ export default function FilmsList({smallFilmCards}: FilmsListProps): JSX.Element
             isActiveVideo={idActiveVideo === smallFilmCard.id}
           />
         </article>
-      )
-      )}
+      ))}
     </div>
   );
 }
