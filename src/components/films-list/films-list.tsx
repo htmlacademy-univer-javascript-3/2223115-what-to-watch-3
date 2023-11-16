@@ -6,13 +6,13 @@ import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import ShownMoreButton from '../show-more-button/show-more-button';
 
-const DEFAULT_COUNT_FILM = 8;
+const DEFAULT_FILMS_COUNT = 8;
 
 export default function FilmsList({smallFilmCards, id, genre}: FilmsListProps): JSX.Element {
   const [idActiveFilm, setIdActiveFilm] = useState('');
   const [idActiveVideo, setIdActiveVideo] = useState('');
   const navigate = useNavigate();
-  const [countShownFilms, setCountShownFilm] = useState(DEFAULT_COUNT_FILM);
+  const [countShownFilms, setCountShownFilm] = useState(DEFAULT_FILMS_COUNT);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const similarFilms = genre !== 'All genres'
     ? smallFilmCards.filter((film) => film.id !== id && film.genre === genre)
@@ -32,7 +32,7 @@ export default function FilmsList({smallFilmCards, id, genre}: FilmsListProps): 
   };
 
   const handleShownMoreClick = () => {
-    setCountShownFilm((prev) => prev + DEFAULT_COUNT_FILM);
+    setCountShownFilm((prev) => prev + DEFAULT_FILMS_COUNT);
   };
 
   return (
