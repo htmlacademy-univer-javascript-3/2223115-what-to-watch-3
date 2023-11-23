@@ -10,8 +10,16 @@ import FilmScreen from '../../pages/film-screen/film-screen';
 import AddReviewScreen from '../../pages/add-review-screen/add-review-screen';
 import PlayerScreen from '../../pages/player-screen/player-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
+import { useAppSelector } from '../../hooks';
+import Spinner from '../spinner/spinner';
 
 export default function App({promoFilmCard, filmCards}: AppProps): JSX.Element {
+  const isFilmsDataLoading = useAppSelector((state) => state.isFilmsDataLoading);
+
+  if (isFilmsDataLoading) {
+    return <Spinner/>;
+  }
+
   return (
     <HelmetProvider>
       <BrowserRouter>
