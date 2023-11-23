@@ -15,4 +15,4 @@ export const fetchFilmsAction = createAsyncThunk<void, undefined, {
     const {data} = await api.get<Film[]>(APIRoute.Films);
     dispatch(loadFilms(data));
   }
-)
+);
