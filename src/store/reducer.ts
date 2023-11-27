@@ -4,7 +4,7 @@ import { Film } from '../types/film';
 import { Genre } from '../types/genre';
 import { AuthorizationStatus } from '../const';
 
-const initialState: {genre: Genre; films: Film[]; isFilmsDataLoading: boolean; authorizationStatus: string} = {
+const initialState: {genre: Genre; films: Film[]; isFilmsDataLoading: boolean; authorizationStatus: AuthorizationStatus} = {
   genre: 'All genres',
   films: [],
   isFilmsDataLoading: false,

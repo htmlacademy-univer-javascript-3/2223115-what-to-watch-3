@@ -1,5 +1,5 @@
 import { AppProps } from './app-props';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute } from '../../const';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import PrivateRoute from '../private-route/private-route';
@@ -14,6 +14,7 @@ import { useAppSelector } from '../../hooks';
 import Spinner from '../spinner/spinner';
 
 export default function App({promoFilmCard, filmCards}: AppProps): JSX.Element {
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const isFilmsDataLoading = useAppSelector((state) => state.isFilmsDataLoading);
 
   if (isFilmsDataLoading) {
@@ -35,7 +36,7 @@ export default function App({promoFilmCard, filmCards}: AppProps): JSX.Element {
           <Route
             path={AppRoute.MyList}
             element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+              <PrivateRoute authorizationStatus={authorizationStatus}>
                 <MyListScreen filmCards={filmCards}/>
               </PrivateRoute>
             }
