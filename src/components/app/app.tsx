@@ -1,6 +1,6 @@
 import { AppProps } from './app-props';
 import { AppRoute } from '../../const';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import PrivateRoute from '../private-route/private-route';
 import MainScreen from '../../pages/main-screen/main-screen';
@@ -12,6 +12,8 @@ import PlayerScreen from '../../pages/player-screen/player-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import { useAppSelector } from '../../hooks';
 import Spinner from '../spinner/spinner';
+import HistoryRouter from '../history-route/history-route';
+import browserHistory from '../../browser-history';
 
 export default function App({promoFilmCard, filmCards}: AppProps): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
@@ -23,7 +25,7 @@ export default function App({promoFilmCard, filmCards}: AppProps): JSX.Element {
 
   return (
     <HelmetProvider>
-      <BrowserRouter>
+      <HistoryRouter history={browserHistory}>
         <Routes>
           <Route
             path={AppRoute.Main}
@@ -57,7 +59,7 @@ export default function App({promoFilmCard, filmCards}: AppProps): JSX.Element {
             element={<NotFoundScreen/>}
           />
         </Routes>
-      </BrowserRouter>
+      </HistoryRouter>
     </HelmetProvider>
   );
 }
