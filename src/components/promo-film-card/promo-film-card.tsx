@@ -1,9 +1,15 @@
 import { PromoFilmCardProps } from './promo-film-card-props';
 import Logo from '../logo/logo';
 import { AppRoute } from '../../const';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import Login from '../login/login';
+import Logout from '../logout/logout';
+import { useAppSelector } from '../../hooks';
+import { AuthorizationStatus } from '../../const';
 
 export default function PromoFilmCard({name, genre, released}: PromoFilmCardProps): JSX.Element{
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+
   const navigate = useNavigate();
   return (
     <section className="film-card">
@@ -16,21 +22,9 @@ export default function PromoFilmCard({name, genre, released}: PromoFilmCardProp
       <h1 className="visually-hidden">WTW</h1>
       <header className="page-header film-card__head">
         <Logo/>
-        <ul className="user-block">
-          <li className="user-block__item">
-            <div className="user-block__avatar">
-              <img
-                src="img/avatar.jpg"
-                alt="User avatar"
-                width={63}
-                height={63}
-              />
-            </div>
-          </li>
-          <li className="user-block__item">
-            <Link to={AppRoute.SignIn}className="user-block__link">Sign out</Link>
-          </li>
-        </ul>
+        {authorizationStatus === AuthorizationStatus.Auth
+          ? <Logout />
+          : <Login />}
       </header>
       <div className="film-card__wrap">
         <div className="film-card__info">
