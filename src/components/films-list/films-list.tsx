@@ -57,9 +57,9 @@ export default function FilmsList({smallFilmCards, id, genre}: FilmsListProps): 
             </article>
           ))}
       </div>
-      <div className="catalog__more" onClick={() => handleShownMoreClick()}>
-        <ShownMoreButton/>
-      </div>
+      {countShownFilms >= smallFilmCards.length
+        ? ''
+        : <div className="catalog__more" onClick={() => handleShownMoreClick()}><ShownMoreButton/></div>}
     </>
   );
 }
