@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import { useAppSelector } from '../../hooks';
+import { useAppSelector, useAppDispatch } from '../../hooks';
+import { logoutAction } from '../../store/api-action';
 
 export default function Logout(): JSX.Element {
+  const dispatch = useAppDispatch();
   const avatarUrl = useAppSelector((state) => state.userInfo?.avatarUrl);
+
   return(
     <ul className="user-block">
       <li className="user-block__item">
@@ -16,7 +19,11 @@ export default function Logout(): JSX.Element {
           />
         </div>
       </li>
-      <li className="user-block__item">
+      <li className="user-block__item" onClick={(evt) => {
+        evt.preventDefault();
+        dispatch(logoutAction());
+      }}
+      >
         <Link to={AppRoute.SignIn} className="user-block__link">Sign out</Link>
       </li>
     </ul>

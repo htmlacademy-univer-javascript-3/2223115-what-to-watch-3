@@ -15,4 +15,4 @@ export const requireAuthorization = createAction<AuthorizationStatus>('user/requ
 
 export const redirectToRoure = createAction<AppRoute>('app/redirectToRoute');
 
-export const loadUserInfo = createAction<UserData | null>('data/loadUserInfo');
+export const setUserInfo = createAction<UserData | null>('user/setUserInfo');
