@@ -14,7 +14,7 @@ export default function FilmsList({smallFilmCards, id, genre}: FilmsListProps): 
   const navigate = useNavigate();
   const [countShownFilms, setCountShownFilm] = useState(DEFAULT_FILMS_COUNT);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const similarFilms = genre !== 'All genres'
+  const relevantFilms = genre !== 'All genres'
     ? smallFilmCards.filter((film) => film.id !== id && film.genre === genre)
     : smallFilmCards;
 
@@ -38,7 +38,7 @@ export default function FilmsList({smallFilmCards, id, genre}: FilmsListProps): 
   return (
     <>
       <div className="catalog__films-list">
-        {similarFilms
+        {relevantFilms
           .slice(0, countShownFilms)
           .map((smallFilmCard: SmallFilmCardProps) => (
             <article className="small-film-card catalog__films-card"
@@ -57,7 +57,7 @@ export default function FilmsList({smallFilmCards, id, genre}: FilmsListProps): 
             </article>
           ))}
       </div>
-      {countShownFilms >= smallFilmCards.length
+      {countShownFilms >= relevantFilms.length
         ? ''
         : <div className="catalog__more" onClick={() => handleShownMoreClick()}><ShownMoreButton/></div>}
     </>
