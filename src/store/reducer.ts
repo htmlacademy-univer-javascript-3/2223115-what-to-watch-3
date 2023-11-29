@@ -5,7 +5,17 @@ import { Genre } from '../types/genre';
 import { AuthorizationStatus } from '../const';
 import { UserData } from '../types/user-data';
 
-const initialState: {genre: Genre; films: Film[]; film: Film | undefined; isFilmsDataLoading: boolean; isFilmDataLoading:boolean; authorizationStatus: AuthorizationStatus; userInfo: UserData | null} = {
+type InitialState = {
+  genre: Genre;
+  films: Film[];
+  film: Film | undefined;
+  isFilmsDataLoading: boolean;
+  isFilmDataLoading:boolean;
+  authorizationStatus: AuthorizationStatus;
+  userInfo: UserData | null;
+};
+
+const initialState: InitialState = {
   genre: 'All genres',
   films: [],
   film: undefined,
