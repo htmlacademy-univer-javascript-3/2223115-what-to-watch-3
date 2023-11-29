@@ -9,7 +9,11 @@ export const changeGenre = createAction<Genre>('genre/changeGenre');
 
 export const setFilmsDataLoadingStatus = createAction<boolean>('data/setFilmsDataLoadingStatus');
 
+export const setFilmDataLoadingStatus = createAction<boolean>('data/setFilmDataLoadingStatus');
+
 export const loadFilms = createAction<Film[]>('data/loadFilms');
+
+export const loadFilm = createAction<Film>('data/loadFilm');
 
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
 
