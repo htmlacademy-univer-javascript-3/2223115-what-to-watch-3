@@ -1,15 +1,17 @@
 import {createReducer} from '@reduxjs/toolkit';
-import { changeGenre, loadFilms, setFilmsDataLoadingStatus, setFilmDataLoadingStatus, requireAuthorization, setUserInfo, loadFilm, loadSimilarFilms} from './action';
+import { changeGenre, loadFilms, setFilmsDataLoadingStatus, setFilmDataLoadingStatus, requireAuthorization, setUserInfo, loadFilm, loadSimilarFilms, loadReviews} from './action';
 import { Film } from '../types/film';
 import { Genre } from '../types/genre';
 import { AuthorizationStatus } from '../const';
 import { UserData } from '../types/user-data';
+import { ReviewData } from '../types/review';
 
 type InitialState = {
   genre: Genre;
   films: Film[];
   film: Film | undefined;
   similarFilms: Film[];
+  reviews: ReviewData[];
   isFilmsDataLoading: boolean;
   isFilmDataLoading:boolean;
   authorizationStatus: AuthorizationStatus;
@@ -21,6 +23,7 @@ const initialState: InitialState = {
   films: [],
   film: undefined,
   similarFilms: [],
+  reviews: [],
   isFilmsDataLoading: false,
   isFilmDataLoading: false,
   authorizationStatus: AuthorizationStatus.Unknown,
@@ -52,5 +55,8 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadSimilarFilms, (state, action) => {
       state.similarFilms = action.payload;
+    })
+    .addCase(loadReviews, (state, action) =>{
+      state.reviews = action.payload;
     });
 });

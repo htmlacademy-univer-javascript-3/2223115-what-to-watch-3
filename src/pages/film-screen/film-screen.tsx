@@ -4,14 +4,13 @@ import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
 import { AppRoute } from '../../const';
 import Tabs from '../../components/tabs/tabs';
-import { reviewsData } from '../../mocks/reviews';
 import FilmsList from '../../components/films-list/films-list';
 import { useAppSelector } from '../../hooks';
 import useFilmById from '../../hooks/film-by-id';
 import Spinner from '../../components/spinner/spinner';
 
 export default function FilmScreen(): JSX.Element {
-  const [film, similarFilms] = useFilmById();
+  const [film, similarFilms, reviews] = useFilmById();
   const navigate = useNavigate();
   const isFilmDataLoading = useAppSelector((state) => state.isFilmDataLoading);
 
@@ -90,7 +89,7 @@ export default function FilmScreen(): JSX.Element {
                     height={327}
                   />
                 </div>
-                <Tabs film={film} reviews={reviewsData}/>
+                <Tabs film={film} reviews={reviews}/>
               </div>
             </div>
           </section>
