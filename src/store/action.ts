@@ -15,6 +15,8 @@ export const loadFilms = createAction<Film[]>('data/loadFilms');
 
 export const loadFilm = createAction<Film>('data/loadFilm');
 
+export const loadSimilarFilms = createAction<Film[]>('data/loadSimilarFilms');
+
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
 
 export const redirectToRoure = createAction<AppRoute>('app/redirectToRoute');

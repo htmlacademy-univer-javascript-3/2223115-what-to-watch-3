@@ -11,7 +11,7 @@ import useFilmById from '../../hooks/film-by-id';
 import Spinner from '../../components/spinner/spinner';
 
 export default function FilmScreen(): JSX.Element {
-  const film = useFilmById();
+  const [film, similarFilms] = useFilmById();
   const navigate = useNavigate();
   const isFilmDataLoading = useAppSelector((state) => state.isFilmDataLoading);
 
@@ -97,7 +97,7 @@ export default function FilmScreen(): JSX.Element {
           <div className="page-content">
             <section className="catalog catalog--like-this">
               <h2 className="catalog__title">More like this</h2>
-              <FilmsList smallFilmCards={[]} id={film.id} genre={film.genre}/>
+              <FilmsList smallFilmCards={similarFilms} id={film.id} genre={film.genre}/>
             </section>
             <Footer/>
           </div>

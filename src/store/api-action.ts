@@ -1,7 +1,7 @@
 import {AxiosInstance} from 'axios';
 import { State, AppDispatch } from '../types/state';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { loadFilms, requireAuthorization, setFilmsDataLoadingStatus, setFilmDataLoadingStatus, redirectToRoure, setUserInfo, loadFilm } from './action';
+import { loadFilms, requireAuthorization, setFilmsDataLoadingStatus, setFilmDataLoadingStatus, redirectToRoure, setUserInfo, loadFilm, loadSimilarFilms } from './action';
 import { APIRoute, AuthorizationStatus, AppRoute } from '../const';
 import { Film } from '../types/film';
 import { AuthData } from '../types/auth-data';
@@ -37,6 +37,18 @@ export const fetchFilmAction = createAsyncThunk<void, {id: string}, {
     } catch {
       dispatch(redirectToRoure(AppRoute.NotFound));
     }
+  }
+);
+
+export const fetchSimilarFilmsAction = createAsyncThunk<void, {id: string}, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchSimilarFilms',
+  async ({id}, {dispatch, extra: api}) => {
+    const {data} = await api.get<Film[]>(`${APIRoute.Films}/${id}/similar`);
+    dispatch(loadSimilarFilms(data));
   }
 );
 
