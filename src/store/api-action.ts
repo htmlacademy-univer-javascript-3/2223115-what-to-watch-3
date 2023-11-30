@@ -1,7 +1,7 @@
 import {AxiosInstance} from 'axios';
 import { State, AppDispatch } from '../types/state';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { loadFilms, requireAuthorization, setFilmsDataLoadingStatus, setFilmDataLoadingStatus, redirectToRoure, setUserInfo, loadFilm, loadSimilarFilms, loadReviews } from './action';
+import { loadFilms, requireAuthorization, setFilmsDataLoadingStatus, setFilmDataLoadingStatus, redirectToRoute, setUserInfo, loadFilm, loadSimilarFilms, loadReviews } from './action';
 import { APIRoute, AuthorizationStatus, AppRoute } from '../const';
 import { Film } from '../types/film';
 import { AuthData } from '../types/auth-data';
@@ -36,7 +36,7 @@ export const fetchFilmAction = createAsyncThunk<void, {id: string}, {
       dispatch(setFilmDataLoadingStatus(false));
       dispatch(loadFilm(data));
     } catch {
-      dispatch(redirectToRoure(AppRoute.NotFound));
+      dispatch(redirectToRoute(AppRoute.NotFound));
     }
   }
 );
@@ -91,7 +91,7 @@ export const loginAction = createAsyncThunk<void, AuthData, {
     const {data} = await api.post<UserData>(APIRoute.Login, {email, password});
     saveToken(data.token);
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
-    dispatch(redirectToRoure(AppRoute.Main));
+    dispatch(redirectToRoute(AppRoute.Main));
     dispatch(setUserInfo(data));
   }
 );

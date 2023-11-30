@@ -1,5 +1,15 @@
 import {createReducer} from '@reduxjs/toolkit';
-import { changeGenre, loadFilms, setFilmsDataLoadingStatus, setFilmDataLoadingStatus, requireAuthorization, setUserInfo, loadFilm, loadSimilarFilms, loadReviews} from './action';
+import {
+  changeGenre,
+  loadFilms,
+  setFilmsDataLoadingStatus,
+  setFilmDataLoadingStatus,
+  requireAuthorization,
+  setUserInfo,
+  loadFilm,
+  loadSimilarFilms,
+  loadReviews
+} from './action';
 import { Film } from '../types/film';
 import { Genre } from '../types/genre';
 import { AuthorizationStatus } from '../const';
