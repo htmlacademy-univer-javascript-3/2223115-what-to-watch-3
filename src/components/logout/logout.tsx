@@ -2,15 +2,17 @@ import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { logoutAction } from '../../store/api-action';
+import { useNavigate } from 'react-router-dom';
 
 export default function Logout(): JSX.Element {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const avatarUrl = useAppSelector((state) => state.userInfo?.avatarUrl);
 
   return(
     <ul className="user-block">
       <li className="user-block__item">
-        <div className="user-block__avatar">
+        <div className="user-block__avatar" onClick={() => navigate(AppRoute.MyList)}>
           <img
             src={avatarUrl}
             alt="User avatar"
@@ -24,7 +26,7 @@ export default function Logout(): JSX.Element {
         dispatch(logoutAction());
       }}
       >
-        <Link to={`/${AppRoute.SignIn}`} className="user-block__link">Sign out</Link>
+        <Link to={AppRoute.Main} className="user-block__link">Sign out</Link>
       </li>
     </ul>
   );

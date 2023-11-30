@@ -70,7 +70,7 @@ export default function FilmScreen(): JSX.Element {
                 <div className="film-card__poster film-card__poster--big">
                   <img
                     src={film.posterImage}
-                    alt={`${film.name }poster`}
+                    alt={`${film.name} poster`}
                     width={218}
                     height={327}
                   />
