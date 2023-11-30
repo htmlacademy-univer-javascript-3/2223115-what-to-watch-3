@@ -24,7 +24,7 @@ export default function Logout(): JSX.Element {
         dispatch(logoutAction());
       }}
       >
-        <Link to={AppRoute.SignIn} className="user-block__link">Sign out</Link>
+        <Link to={`/${AppRoute.SignIn}`} className="user-block__link">Sign out</Link>
       </li>
     </ul>
   );
