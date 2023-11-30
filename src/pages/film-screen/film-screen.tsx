@@ -5,13 +5,13 @@ import { AppRoute } from '../../const';
 import Tabs from '../../components/tabs/tabs';
 import FilmsList from '../../components/films-list/films-list';
 import { useAppSelector } from '../../hooks';
-import useFilmById from '../../hooks/film-by-id';
+import useFilmInfoById from '../../hooks/film-by-id';
 import Spinner from '../../components/spinner/spinner';
 import Header from '../../components/header/header';
 import { AuthorizationStatus } from '../../const';
 
 export default function FilmScreen(): JSX.Element {
-  const [film, similarFilms, reviews] = useFilmById();
+  const [film, similarFilms, reviews] = useFilmInfoById();
   const navigate = useNavigate();
   const isFilmDataLoading = useAppSelector((state) => state.isFilmDataLoading);
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
