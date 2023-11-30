@@ -47,7 +47,7 @@ export default function App({promoFilmCard, filmCards}: AppProps): JSX.Element {
             <Route index element={<NotFoundScreen/>}/>
             <Route path=':id'>
               <Route index element={<FilmScreen/>}/>
-              <Route path={AppRoute.AddReview} element={<AddReviewScreen filmCards={filmCards}/>}/>
+              <Route path={AppRoute.AddReview} element={<AddReviewScreen/>}/>
             </Route>
           </Route>
           <Route path={AppRoute.Player}>

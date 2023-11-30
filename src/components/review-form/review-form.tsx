@@ -1,8 +1,12 @@
 import { useState, ChangeEvent } from 'react';
+import { ReviewFormProps } from './review-form-props';
+import { useAppDispatch } from '../../hooks';
+import { addReviewAction } from '../../store/api-action';
 
-export default function ReviewsForm(): JSX.Element {
+export default function ReviewsForm({id}: ReviewFormProps): JSX.Element {
   const [rating, setRating] = useState('');
   const [reviewText, setReviewText] = useState('');
+  const dispatch = useAppDispatch();
 
   const handleReviewTextChange = (evt: ChangeEvent<HTMLTextAreaElement>) => {
     setReviewText(evt.target.value);
@@ -10,6 +14,16 @@ export default function ReviewsForm(): JSX.Element {
 
   const handleRatingChange = (evt: ChangeEvent<HTMLInputElement>) => {
     setRating(evt.target.value);
+  };
+
+  const handleSubmit = () => {
+    if (rating !== '' && reviewText !== '') {
+      dispatch(addReviewAction({
+        filmId: id,
+        rating: Number(rating),
+        comment: reviewText,
+      }));
+    }
   };
 
   return (
@@ -150,8 +164,8 @@ export default function ReviewsForm(): JSX.Element {
           {reviewText}
         </textarea>
         <div className="add-review__submit">
-          <button className="add-review__btn" type="submit">
-                  Post
+          <button className="add-review__btn" type="submit" onClick={handleSubmit}>
+            Post
           </button>
         </div>
       </div>

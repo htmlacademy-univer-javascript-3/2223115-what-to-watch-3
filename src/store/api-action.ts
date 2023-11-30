@@ -1,7 +1,18 @@
 import {AxiosInstance} from 'axios';
 import { State, AppDispatch } from '../types/state';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { loadFilms, requireAuthorization, setFilmsDataLoadingStatus, setFilmDataLoadingStatus, redirectToRoute, setUserInfo, loadFilm, loadSimilarFilms, loadReviews } from './action';
+import {
+  loadFilms,
+  requireAuthorization,
+  setFilmsDataLoadingStatus,
+  setFilmDataLoadingStatus,
+  redirectToRoute,
+  setUserInfo,
+  loadFilm,
+  loadSimilarFilms,
+  loadReviews,
+  addReview
+} from './action';
 import { APIRoute, AuthorizationStatus, AppRoute } from '../const';
 import { Film } from '../types/film';
 import { AuthData } from '../types/auth-data';
@@ -107,5 +118,18 @@ export const logoutAction = createAsyncThunk<void, undefined, {
     dropToken();
     dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
     dispatch(setUserInfo(null));
+  },
+);
+
+export const addReviewAction = createAsyncThunk<void, ReviewData, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/addReview',
+  async ({filmId, comment, rating}, {dispatch, extra: api}) => {
+    await api.delete(APIRoute.Logout);
+    const {data} = await api.post<ReviewData>(`${APIRoute.Comments}/${filmId as string}`, {comment, rating});
+    dispatch(addReview(data));
   },
 );
