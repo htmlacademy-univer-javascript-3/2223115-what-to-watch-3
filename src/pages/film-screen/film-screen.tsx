@@ -8,11 +8,13 @@ import { useAppSelector } from '../../hooks';
 import useFilmById from '../../hooks/film-by-id';
 import Spinner from '../../components/spinner/spinner';
 import Header from '../../components/header/header';
+import { AuthorizationStatus } from '../../const';
 
 export default function FilmScreen(): JSX.Element {
   const [film, similarFilms, reviews] = useFilmById();
   const navigate = useNavigate();
   const isFilmDataLoading = useAppSelector((state) => state.isFilmDataLoading);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
   return (
     <div>
@@ -55,9 +57,10 @@ export default function FilmScreen(): JSX.Element {
                       <span>My list</span>
                       <span className="film-card__count">9</span>
                     </button>
-                    <Link to={`${AppRoute.AddReview}`} className="btn film-card__button">
-                         Add review
-                    </Link>
+                    {authorizationStatus === AuthorizationStatus.Auth ?
+                      <Link to={`${AppRoute.AddReview}`} className="btn film-card__button">
+                        Add review
+                      </Link> : ''}
                   </div>
                 </div>
               </div>
