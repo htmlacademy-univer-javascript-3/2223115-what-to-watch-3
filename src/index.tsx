@@ -5,8 +5,9 @@ import { AppProps } from './components/app/app-props';
 import { films } from './mocks/films';
 import { store } from './store';
 import { Provider } from 'react-redux';
-import { fetchFilmsAction } from './store/api-action';
+import { fetchFilmsAction, checkAuthAction } from './store/api-action';
 
+store.dispatch(checkAuthAction());
 store.dispatch(fetchFilmsAction());
 
 const root = ReactDOM.createRoot(

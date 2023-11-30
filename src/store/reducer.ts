@@ -1,13 +1,43 @@
 import {createReducer} from '@reduxjs/toolkit';
-import { changeGenre, getFilms, loadFilms, setFilmsDataLoadingStatus } from './action';
+import {
+  changeGenre,
+  loadFilms,
+  setFilmsDataLoadingStatus,
+  setFilmDataLoadingStatus,
+  requireAuthorization,
+  setUserInfo,
+  loadFilm,
+  loadSimilarFilms,
+  loadReviews
+} from './action';
 import { Film } from '../types/film';
 import { Genre } from '../types/genre';
-import { films } from '../mocks/films';
+import { AuthorizationStatus } from '../const';
+import { UserData } from '../types/user-data';
+import { ReviewData } from '../types/review';
 
-const initialState: {genre: Genre; films: Film[]; isFilmsDataLoading: boolean} = {
+type InitialState = {
+  genre: Genre;
+  films: Film[];
+  film: Film | undefined;
+  similarFilms: Film[];
+  reviews: ReviewData[];
+  isFilmsDataLoading: boolean;
+  isFilmDataLoading:boolean;
+  authorizationStatus: AuthorizationStatus;
+  userInfo: UserData | null;
+};
+
+const initialState: InitialState = {
   genre: 'All genres',
   films: [],
+  film: undefined,
+  similarFilms: [],
+  reviews: [],
   isFilmsDataLoading: false,
+  isFilmDataLoading: false,
+  authorizationStatus: AuthorizationStatus.Unknown,
+  userInfo: null,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -15,13 +45,28 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(changeGenre, (state, action) => {
       state.genre = action.payload;
     })
-    .addCase(getFilms, (state) => {
-      state.films = films;
-    })
     .addCase(setFilmsDataLoadingStatus, (state, action) => {
       state.isFilmsDataLoading = action.payload;
     })
+    .addCase(setFilmDataLoadingStatus, (state, action) => {
+      state.isFilmDataLoading = action.payload;
+    })
     .addCase(loadFilms, (state, action) => {
       state.films = action.payload;
+    })
+    .addCase(requireAuthorization, (state, action) => {
+      state.authorizationStatus = action.payload;
+    })
+    .addCase(setUserInfo, (state, action) => {
+      state.userInfo = action.payload;
+    })
+    .addCase(loadFilm, (state, action) => {
+      state.film = action.payload;
+    })
+    .addCase(loadSimilarFilms, (state, action) => {
+      state.similarFilms = action.payload;
+    })
+    .addCase(loadReviews, (state, action) =>{
+      state.reviews = action.payload;
     });
 });

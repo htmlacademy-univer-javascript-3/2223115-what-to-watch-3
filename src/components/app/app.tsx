@@ -1,6 +1,6 @@
 import { AppProps } from './app-props';
-import { AppRoute, AuthorizationStatus } from '../../const';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { AppRoute } from '../../const';
+import { Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import PrivateRoute from '../private-route/private-route';
 import MainScreen from '../../pages/main-screen/main-screen';
@@ -12,8 +12,11 @@ import PlayerScreen from '../../pages/player-screen/player-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import { useAppSelector } from '../../hooks';
 import Spinner from '../spinner/spinner';
+import HistoryRouter from '../history-route/history-route';
+import browserHistory from '../../browser-history';
 
 export default function App({promoFilmCard, filmCards}: AppProps): JSX.Element {
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const isFilmsDataLoading = useAppSelector((state) => state.isFilmsDataLoading);
 
   if (isFilmsDataLoading) {
@@ -22,7 +25,7 @@ export default function App({promoFilmCard, filmCards}: AppProps): JSX.Element {
 
   return (
     <HelmetProvider>
-      <BrowserRouter>
+      <HistoryRouter history={browserHistory}>
         <Routes>
           <Route
             path={AppRoute.Main}
@@ -35,7 +38,7 @@ export default function App({promoFilmCard, filmCards}: AppProps): JSX.Element {
           <Route
             path={AppRoute.MyList}
             element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+              <PrivateRoute authorizationStatus={authorizationStatus}>
                 <MyListScreen filmCards={filmCards}/>
               </PrivateRoute>
             }
@@ -43,7 +46,7 @@ export default function App({promoFilmCard, filmCards}: AppProps): JSX.Element {
           <Route path={AppRoute.Film}>
             <Route index element={<NotFoundScreen/>}/>
             <Route path=':id'>
-              <Route index element={<FilmScreen filmCards={filmCards}/>}/>
+              <Route index element={<FilmScreen/>}/>
               <Route path={AppRoute.AddReview} element={<AddReviewScreen filmCards={filmCards}/>}/>
             </Route>
           </Route>
@@ -56,7 +59,7 @@ export default function App({promoFilmCard, filmCards}: AppProps): JSX.Element {
             element={<NotFoundScreen/>}
           />
         </Routes>
-      </BrowserRouter>
+      </HistoryRouter>
     </HelmetProvider>
   );
 }

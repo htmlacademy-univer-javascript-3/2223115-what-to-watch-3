@@ -3,21 +3,14 @@ import PromoFilmCard from '../../components/promo-film-card/promo-film-card';
 import FilmsList from '../../components/films-list/films-list';
 import { MainScreenProps } from './main-screen-props';
 import Footer from '../../components/footer/footer';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useAppSelector } from '../../hooks';
 import { Genre } from '../../types/genre';
-import { useEffect } from 'react';
-import { getFilms } from '../../store/action';
 import GenreList from '../../components/genre-list/genre-list';
 
 export default function MainScreen({promoFilmCard}: MainScreenProps): JSX.Element {
-  const dispatch = useAppDispatch();
   const genres: Genre[] = useAppSelector((state) => ['All genres', ...new Set(state.films.map((film) => film.genre))] as Genre[]);
   const activeGenre = useAppSelector((state) => state.genre);
   const films = useAppSelector((state) => state.films);
-
-  useEffect(() => {
-    dispatch(getFilms());
-  }, [dispatch]);
 
   return (
     <>
