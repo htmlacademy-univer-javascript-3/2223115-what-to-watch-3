@@ -3,13 +3,24 @@ import Logout from '../logout/logout';
 import Logo from '../logo/logo';
 import { useAppSelector } from '../../hooks';
 import { AuthorizationStatus } from '../../const';
+import cn from 'classnames';
 
-export default function Header(): JSX.Element {
+type HeaderProps = {
+  children?: JSX.Element;
+}
+
+export default function Header({children}: HeaderProps): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
+  const headerClass = cn('page-header', {
+    'user-page__head': children,
+    'film-card__head': !children,
+  });
+
   return (
-    <header className="page-header film-card__head">
+    <header className={headerClass} >
       <Logo/>
+      {children}
       {authorizationStatus === AuthorizationStatus.Auth
         ? <Logout />
         : <Login />}
