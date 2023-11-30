@@ -2,7 +2,6 @@ import { ReviewData } from '../types/review';
 
 export const reviewsData: ReviewData[] = [
   {
-    filmId: '0',
     id:'1',
     date: '2023-11-05T21:00:00.311Z',
     user: 'Egor',
@@ -10,7 +9,6 @@ export const reviewsData: ReviewData[] = [
     rating: 8.0,
   },
   {
-    filmId: '0',
     id:'2',
     date: '2023-11-05T21:00:00.311Z',
     user: 'Arina',
@@ -18,7 +16,6 @@ export const reviewsData: ReviewData[] = [
     rating: 7.2,
   },
   {
-    filmId: '0',
     id:'3',
     date: '2023-11-05T21:00:00.311Z',
     user: 'Nikita',
@@ -26,7 +23,6 @@ export const reviewsData: ReviewData[] = [
     rating: 9.4,
   },
   {
-    filmId: '0',
     id:'4',
     date: '2023-11-05T21:00:00.311Z',
     user: 'Masha',
@@ -34,7 +30,6 @@ export const reviewsData: ReviewData[] = [
     rating: 10.0,
   },
   {
-    filmId: '1',
     id:'1',
     date: '2023-11-05T21:00:00.311Z',
     user: 'Egor',
@@ -42,7 +37,6 @@ export const reviewsData: ReviewData[] = [
     rating: 8.0,
   },
   {
-    filmId: '1',
     id:'2',
     date: '2023-11-05T21:00:00.311Z',
     user: 'Arina',
@@ -50,7 +44,6 @@ export const reviewsData: ReviewData[] = [
     rating: 7.2,
   },
   {
-    filmId: '2',
     id:'2',
     date: '2023-11-05T21:00:00.311Z',
     user: 'Nikita',
@@ -58,7 +51,6 @@ export const reviewsData: ReviewData[] = [
     rating: 7.5,
   },
   {
-    filmId: '3',
     id:'1',
     date: '2023-11-05T21:00:00.311Z',
     user: 'Masha',
