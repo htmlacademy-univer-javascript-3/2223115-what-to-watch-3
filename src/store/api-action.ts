@@ -10,8 +10,7 @@ import {
   setUserInfo,
   loadFilm,
   loadSimilarFilms,
-  loadReviews,
-  addReview
+  loadReviews
 } from './action';
 import { APIRoute, AuthorizationStatus, AppRoute } from '../const';
 import { Film } from '../types/film';
@@ -128,9 +127,7 @@ export const addReviewAction = createAsyncThunk<void, NewReviewData, {
   extra: AxiosInstance;
 }>(
   'data/addReview',
-  async ({filmId, comment, rating}, {dispatch, extra: api}) => {
-    await api.delete(APIRoute.Logout);
-    const {data} = await api.post<ReviewData>(`${APIRoute.Comments}/${filmId}`, {comment, rating});
-    dispatch(addReview(data));
+  async ({filmId, comment, rating}, {extra: api}) => {
+    await api.post<ReviewData>(`${APIRoute.Comments}/${filmId}`, {comment, rating});
   },
 );

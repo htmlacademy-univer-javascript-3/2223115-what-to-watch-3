@@ -9,7 +9,6 @@ import {
   loadFilm,
   loadSimilarFilms,
   loadReviews,
-  addReview
 } from './action';
 import { Film } from '../types/film';
 import { Genre } from '../types/genre';
@@ -69,8 +68,5 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadReviews, (state, action) =>{
       state.reviews = action.payload;
-    })
-    .addCase(addReview, (state, action) => {
-      state.reviews.push(action.payload);
     });
 });
