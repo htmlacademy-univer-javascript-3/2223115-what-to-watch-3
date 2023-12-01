@@ -19,6 +19,7 @@ import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 import { ReviewData } from '../types/review';
 import { saveToken, dropToken } from '../services/token';
+import { NewReviewData } from '../types/new-review-data';
 
 export const fetchFilmsAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
@@ -121,7 +122,7 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   },
 );
 
-export const addReviewAction = createAsyncThunk<void, ReviewData, {
+export const addReviewAction = createAsyncThunk<void, NewReviewData, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -129,7 +130,7 @@ export const addReviewAction = createAsyncThunk<void, ReviewData, {
   'data/addReview',
   async ({filmId, comment, rating}, {dispatch, extra: api}) => {
     await api.delete(APIRoute.Logout);
-    const {data} = await api.post<ReviewData>(`${APIRoute.Comments}/${filmId as string}`, {comment, rating});
+    const {data} = await api.post<ReviewData>(`${APIRoute.Comments}/${filmId}`, {comment, rating});
     dispatch(addReview(data));
   },
 );
