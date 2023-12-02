@@ -1,5 +1,5 @@
 export type NewReviewData = {
-  filmId: string;
+  id: string;
   comment: string;
   rating: number;
 }

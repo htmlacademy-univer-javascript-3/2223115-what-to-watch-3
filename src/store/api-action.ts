@@ -127,7 +127,8 @@ export const addReviewAction = createAsyncThunk<void, NewReviewData, {
   extra: AxiosInstance;
 }>(
   'data/addReview',
-  async ({filmId, comment, rating}, {extra: api}) => {
-    await api.post<ReviewData>(`${APIRoute.Comments}/${filmId}`, {comment, rating});
+  async ({id, comment, rating}, {dispatch, extra: api}) => {
+    await api.post<NewReviewData>(`${APIRoute.Comments}/${id}`, {comment, rating});
+    dispatch(redirectToRoute(`${AppRoute.Film}/${id}`));
   },
 );
