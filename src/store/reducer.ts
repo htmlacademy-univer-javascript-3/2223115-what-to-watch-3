@@ -8,7 +8,7 @@ import {
   setUserInfo,
   loadFilm,
   loadSimilarFilms,
-  loadReviews
+  loadReviews,
 } from './action';
 import { Film } from '../types/film';
 import { Genre } from '../types/genre';

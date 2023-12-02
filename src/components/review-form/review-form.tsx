@@ -1,8 +1,12 @@
-import { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
+import { ReviewFormProps } from './review-form-props';
+import { useAppDispatch } from '../../hooks';
+import { addReviewAction } from '../../store/api-action';
 
-export default function ReviewsForm(): JSX.Element {
+export default function ReviewsForm({id}: ReviewFormProps): JSX.Element {
   const [rating, setRating] = useState('');
   const [reviewText, setReviewText] = useState('');
+  const dispatch = useAppDispatch();
 
   const handleReviewTextChange = (evt: ChangeEvent<HTMLTextAreaElement>) => {
     setReviewText(evt.target.value);
@@ -12,8 +16,19 @@ export default function ReviewsForm(): JSX.Element {
     setRating(evt.target.value);
   };
 
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    if (rating !== '' && reviewText !== '') {
+      dispatch(addReviewAction({
+        id: id,
+        rating: Number(rating),
+        comment: reviewText,
+      }));
+    }
+  };
+
   return (
-    <form action="#" className="add-review__form">
+    <form action="#" className="add-review__form" onSubmit={handleSubmit}>
       <div className="rating">
         <div className="rating__stars">
           <input
@@ -151,7 +166,7 @@ export default function ReviewsForm(): JSX.Element {
         </textarea>
         <div className="add-review__submit">
           <button className="add-review__btn" type="submit">
-                  Post
+            Post
           </button>
         </div>
       </div>
