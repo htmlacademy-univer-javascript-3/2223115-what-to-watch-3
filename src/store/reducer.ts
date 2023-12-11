@@ -4,7 +4,6 @@ import {
   loadFilms,
   setFilmsDataLoadingStatus,
   setFilmDataLoadingStatus,
-  requireAuthorization,
   setUserInfo,
   loadFilm,
   loadSimilarFilms,
@@ -12,7 +11,6 @@ import {
 } from './action';
 import { Film } from '../types/film';
 import { Genre } from '../types/genre';
-import { AuthorizationStatus } from '../const';
 import { UserData } from '../types/user-data';
 import { ReviewData } from '../types/review';
 
@@ -24,7 +22,6 @@ type InitialState = {
   reviews: ReviewData[];
   isFilmsDataLoading: boolean;
   isFilmDataLoading:boolean;
-  authorizationStatus: AuthorizationStatus;
   userInfo: UserData | null;
 };
 
@@ -36,7 +33,6 @@ const initialState: InitialState = {
   reviews: [],
   isFilmsDataLoading: false,
   isFilmDataLoading: false,
-  authorizationStatus: AuthorizationStatus.Unknown,
   userInfo: null,
 };
 
@@ -53,9 +49,6 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadFilms, (state, action) => {
       state.films = action.payload;
-    })
-    .addCase(requireAuthorization, (state, action) => {
-      state.authorizationStatus = action.payload;
     })
     .addCase(setUserInfo, (state, action) => {
       state.userInfo = action.payload;
