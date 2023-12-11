@@ -3,6 +3,7 @@ import { AuthorizationStatus } from '../const';
 import { Film } from './film';
 import { ReviewData } from './review';
 import { UserData } from './user-data';
+import { Genre } from './genre';
 
 export type UserProcess = {
   authorizationStatus: AuthorizationStatus;
@@ -16,6 +17,10 @@ export type WtwData = {
   film: Film | undefined;
   similarFilms: Film[];
   reviews: ReviewData[];
+}
+
+export type WtwProcess = {
+  genre: Genre;
 }
 
 export type State = ReturnType<typeof store.getState>;

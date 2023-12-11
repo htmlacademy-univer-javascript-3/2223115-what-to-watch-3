@@ -2,8 +2,7 @@ import {AxiosInstance} from 'axios';
 import { State, AppDispatch } from '../types/state';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
-  redirectToRoute,
-  setUserInfo
+  redirectToRoute
 } from './action';
 import { APIRoute, AppRoute } from '../const';
 import { Film } from '../types/film';
@@ -92,16 +91,16 @@ export const loginAction = createAsyncThunk<UserData, AuthData, {
   }
 );
 
-export const logoutAction = createAsyncThunk<void, undefined, {
+export const logoutAction = createAsyncThunk<undefined, undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'user/logout',
-  async (_arg, {dispatch, extra: api}) => {
+  async (_arg, {extra: api}) => {
     await api.delete(APIRoute.Logout);
     dropToken();
-    dispatch(setUserInfo(null));
+    return undefined;
   },
 );
 
