@@ -25,15 +25,20 @@ export const fetchFilmsAction = createAsyncThunk<Film[], undefined, {
   }
 );
 
-export const fetchFilmAction = createAsyncThunk<Film, {id: string}, {
+export const fetchFilmAction = createAsyncThunk<Film | undefined, {id: string}, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'data/fetchFilm',
-  async ({id}, {extra: api}) => {
-    const {data} = await api.get<Film>(`${APIRoute.Films}/${id}`);
-    return data;
+  async ({id}, {dispatch, extra: api}) => {
+    try {
+      const {data} = await api.get<Film>(`${APIRoute.Films}/${id}`);
+      return data;
+    } catch {
+      dispatch(redirectToRoute(AppRoute.NotFound));
+      return undefined;
+    }
   }
 );
 
@@ -72,7 +77,7 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
   }
 );
 
-export const loginAction = createAsyncThunk<void, AuthData, {
+export const loginAction = createAsyncThunk<UserData, AuthData, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -82,7 +87,8 @@ export const loginAction = createAsyncThunk<void, AuthData, {
     const {data} = await api.post<UserData>(APIRoute.Login, {email, password});
     saveToken(data.token);
     dispatch(redirectToRoute(AppRoute.Main));
-    dispatch(setUserInfo(data));
+
+    return data;
   }
 );
 
