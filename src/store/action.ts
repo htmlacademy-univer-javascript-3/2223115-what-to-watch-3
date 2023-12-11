@@ -5,7 +5,7 @@ import { AuthorizationStatus } from '../const';
 import { UserData } from '../types/user-data';
 import { ReviewData } from '../types/review';
 
-export const changeGenre = createAction<Genre>('genre/changeGenre');
+export const changeGenre = createAction<Genre>('wtw/changeGenre');
 
 export const setFilmsDataLoadingStatus = createAction<boolean>('data/setFilmsDataLoadingStatus');
 
@@ -21,6 +21,6 @@ export const loadReviews = createAction<ReviewData[]>('data/loadReviews');
 
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
 
-export const redirectToRoute = createAction<string>('app/redirectToRoute');
+export const redirectToRoute = createAction<string>('wtw/redirectToRoute');
 
 export const setUserInfo = createAction<UserData | null>('user/setUserInfo');
