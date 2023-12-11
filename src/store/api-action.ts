@@ -2,14 +2,8 @@ import {AxiosInstance} from 'axios';
 import { State, AppDispatch } from '../types/state';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
-  loadFilms,
-  setFilmsDataLoadingStatus,
-  setFilmDataLoadingStatus,
   redirectToRoute,
-  setUserInfo,
-  loadFilm,
-  loadSimilarFilms,
-  loadReviews
+  setUserInfo
 } from './action';
 import { APIRoute, AppRoute } from '../const';
 import { Film } from '../types/film';
@@ -19,59 +13,51 @@ import { ReviewData } from '../types/review';
 import { saveToken, dropToken } from '../services/token';
 import { NewReviewData } from '../types/new-review-data';
 
-export const fetchFilmsAction = createAsyncThunk<void, undefined, {
+export const fetchFilmsAction = createAsyncThunk<Film[], undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'data/fetchFilms',
-  async (_arg, {dispatch, extra: api}) => {
-    dispatch(setFilmsDataLoadingStatus(true));
+  async (_arg, {extra: api}) => {
     const {data} = await api.get<Film[]>(APIRoute.Films);
-    dispatch(setFilmsDataLoadingStatus(false));
-    dispatch(loadFilms(data));
+    return data;
   }
 );
 
-export const fetchFilmAction = createAsyncThunk<void, {id: string}, {
+export const fetchFilmAction = createAsyncThunk<Film, {id: string}, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'data/fetchFilm',
-  async ({id}, {dispatch, extra: api}) => {
-    try {
-      dispatch(setFilmDataLoadingStatus(true));
-      const {data} = await api.get<Film>(`${APIRoute.Films}/${id}`);
-      dispatch(setFilmDataLoadingStatus(false));
-      dispatch(loadFilm(data));
-    } catch {
-      dispatch(redirectToRoute(AppRoute.NotFound));
-    }
+  async ({id}, {extra: api}) => {
+    const {data} = await api.get<Film>(`${APIRoute.Films}/${id}`);
+    return data;
   }
 );
 
-export const fetchSimilarFilmsAction = createAsyncThunk<void, {id: string}, {
+export const fetchSimilarFilmsAction = createAsyncThunk<Film[], {id: string}, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'data/fetchSimilarFilms',
-  async ({id}, {dispatch, extra: api}) => {
+  async ({id}, {extra: api}) => {
     const {data} = await api.get<Film[]>(`${APIRoute.Films}/${id}/similar`);
-    dispatch(loadSimilarFilms(data));
+    return data;
   }
 );
 
-export const fetchReviewsAction = createAsyncThunk<void, {id: string}, {
+export const fetchReviewsAction = createAsyncThunk<ReviewData[], {id: string}, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'data/fetchReviews',
-  async ({id}, {dispatch, extra: api}) => {
+  async ({id}, {extra: api}) => {
     const {data} = await api.get<ReviewData[]>(`${APIRoute.Comments}/${id}`);
-    dispatch(loadReviews(data));
+    return data;
   }
 );
 

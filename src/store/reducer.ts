@@ -1,13 +1,7 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {
   changeGenre,
-  loadFilms,
-  setFilmsDataLoadingStatus,
-  setFilmDataLoadingStatus,
   setUserInfo,
-  loadFilm,
-  loadSimilarFilms,
-  loadReviews,
 } from './action';
 import { Film } from '../types/film';
 import { Genre } from '../types/genre';
@@ -41,25 +35,7 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(changeGenre, (state, action) => {
       state.genre = action.payload;
     })
-    .addCase(setFilmsDataLoadingStatus, (state, action) => {
-      state.isFilmsDataLoading = action.payload;
-    })
-    .addCase(setFilmDataLoadingStatus, (state, action) => {
-      state.isFilmDataLoading = action.payload;
-    })
-    .addCase(loadFilms, (state, action) => {
-      state.films = action.payload;
-    })
     .addCase(setUserInfo, (state, action) => {
       state.userInfo = action.payload;
-    })
-    .addCase(loadFilm, (state, action) => {
-      state.film = action.payload;
-    })
-    .addCase(loadSimilarFilms, (state, action) => {
-      state.similarFilms = action.payload;
-    })
-    .addCase(loadReviews, (state, action) =>{
-      state.reviews = action.payload;
     });
 });
