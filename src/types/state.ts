@@ -13,6 +13,7 @@ export type UserProcess = {
 
 export type WtwData = {
   films: Film[];
+  favoriteFilms: Film[];
   isFilmsDataLoading: boolean;
   isPromoFilmDataLoading: boolean;
   isFilmDataLoading: boolean;

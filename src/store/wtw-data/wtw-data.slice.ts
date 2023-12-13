@@ -5,7 +5,8 @@ import {
   fetchFilmAction,
   fetchSimilarFilmsAction,
   fetchReviewsAction,
-  fetchPromoFilmAction
+  fetchPromoFilmAction,
+  fetchFavoriteFilmsAction
 } from '../api-action';
 import { WtwData } from '../../types/state';
 
@@ -15,6 +16,7 @@ const initialState: WtwData = {
   similarFilms: [],
   reviews: [],
   promoFilm: undefined,
+  favoriteFilms: [],
   isFilmDataLoading: false,
   isPromoFilmDataLoading: false,
   isFilmsDataLoading: false,
@@ -52,6 +54,9 @@ export const wtwData = createSlice({
       .addCase(fetchPromoFilmAction.fulfilled, (state, action) => {
         state.promoFilm = action.payload;
         state.isPromoFilmDataLoading = false;
+      })
+      .addCase(fetchFavoriteFilmsAction.fulfilled, (state, action) => {
+        state.favoriteFilms = action.payload;
       });
   }
 });

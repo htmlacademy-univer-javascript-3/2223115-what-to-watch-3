@@ -11,7 +11,7 @@ import useReviewsById from '../../hooks/reviews-by-id';
 import Spinner from '../../components/spinner/spinner';
 import Header from '../../components/header/header';
 import { AuthorizationStatus } from '../../const';
-import { getFilmDataLoadingStatus } from '../../store/wtw-data/wtw-data.selectors';
+import { getFilmDataLoadingStatus, getFavoriteFilms } from '../../store/wtw-data/wtw-data.selectors';
 import { getAuthorizationStatus } from '../../store/user-process/user-process.selectors';
 
 export default function FilmScreen(): JSX.Element {
@@ -19,6 +19,7 @@ export default function FilmScreen(): JSX.Element {
   const similarFilms = useSimilarFilmsById();
   const reviews = useReviewsById();
   const navigate = useNavigate();
+  const favoriteFilms = useAppSelector(getFavoriteFilms);
   const isFilmDataLoading = useAppSelector(getFilmDataLoadingStatus);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
@@ -61,7 +62,7 @@ export default function FilmScreen(): JSX.Element {
                         <use xlinkHref="#add" />
                       </svg>
                       <span>My list</span>
-                      <span className="film-card__count">9</span>
+                      <span className="film-card__count">{favoriteFilms.length}</span>
                     </button>
                     {authorizationStatus === AuthorizationStatus.Auth ?
                       <Link to={`${AppRoute.AddReview}`} className="btn film-card__button">
