@@ -53,6 +53,7 @@ export const wtwData = createSlice({
       })
       .addCase(fetchPromoFilmAction.fulfilled, (state, action) => {
         state.promoFilm = action.payload;
+        state.film = action.payload;
         state.isPromoFilmDataLoading = false;
       })
       .addCase(fetchFavoriteFilmsAction.fulfilled, (state, action) => {

@@ -3,7 +3,6 @@ import { AuthorizationStatus } from '../const';
 import { Film } from './film';
 import { ReviewData } from './review';
 import { UserData } from './user-data';
-import { PromoFilm } from './promo-film';
 import { Genre } from './genre';
 
 export type UserProcess = {
@@ -20,7 +19,7 @@ export type WtwData = {
   film: Film | undefined;
   similarFilms: Film[];
   reviews: ReviewData[];
-  promoFilm: PromoFilm | undefined;
+  promoFilm: Film | undefined;
 }
 
 export type WtwProcess = {

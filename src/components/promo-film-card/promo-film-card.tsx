@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../header/header';
 import { useAppSelector } from '../../hooks';
 import { getPromoFilm, getFavoriteFilms } from '../../store/wtw-data/wtw-data.selectors';
-import { PromoFilm } from '../../types/promo-film';
+import { Film } from '../../types/film';
 
 export default function PromoFilmCard(): JSX.Element{
   const navigate = useNavigate();
-  const promoFilm = useAppSelector(getPromoFilm) as PromoFilm;
+  const promoFilm = useAppSelector(getPromoFilm) as Film;
   const favoriteFilms = useAppSelector(getFavoriteFilms);
 
 

@@ -22,7 +22,7 @@ export default function App(): JSX.Element {
   const isFilmsDataLoading = useAppSelector(getFilmsDataLoadingStatus);
   const isPromoFilmDataLoading = useAppSelector(getPromoFilmDataLoadingStatus);
 
-  if (isFilmsDataLoading && isPromoFilmDataLoading) {
+  if (isFilmsDataLoading || isPromoFilmDataLoading) {
     return <Spinner/>;
   }
 

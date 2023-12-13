@@ -9,7 +9,6 @@ import { Film } from '../types/film';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 import { ReviewData } from '../types/review';
-import { PromoFilm } from '../types/promo-film';
 import { saveToken, dropToken } from '../services/token';
 import { NewReviewData } from '../types/new-review-data';
 
@@ -78,14 +77,14 @@ export const addReviewAction = createAsyncThunk<void, NewReviewData, {
   },
 );
 
-export const fetchPromoFilmAction = createAsyncThunk<PromoFilm, undefined, {
+export const fetchPromoFilmAction = createAsyncThunk<Film, undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'data/fetchPromoFilm',
   async (_arg, {extra: api}) => {
-    const {data} = await api.get<PromoFilm>(APIRoute.Promo);
+    const {data} = await api.get<Film>(APIRoute.Promo);
     return data;
   }
 );
