@@ -11,8 +11,10 @@ const DEFAULT_FILMS_COUNT = 8;
 export default function FilmsList({smallFilmCards, id, genre}: FilmsListProps): JSX.Element {
   const [idActiveFilm, setIdActiveFilm] = useState('');
   const [idActiveVideo, setIdActiveVideo] = useState('');
-  const navigate = useNavigate();
   const [countShownFilms, setCountShownFilm] = useState(DEFAULT_FILMS_COUNT);
+
+  const navigate = useNavigate();
+
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const relevantFilms = genre !== 'All genres'
     ? smallFilmCards.filter((film) => film.id !== id && film.genre === genre)

@@ -1,12 +1,10 @@
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import { useAppSelector } from '../../hooks';
-import { getFilm } from '../../store/wtw-data/wtw-data.selectors';
-import { Film } from '../../types/film';
+import useFilmById from '../../hooks/film-by-id';
 
 export default function PlayerScreen(): JSX.Element {
-  const film = useAppSelector(getFilm) as Film;
+  const film = useFilmById();
   const navigate = useNavigate();
 
   return (
@@ -16,14 +14,14 @@ export default function PlayerScreen(): JSX.Element {
       </Helmet>
       <video src={film.videoLink} className="player__video" poster={film.posterImage} />
       <button type="button" className="player__exit" onClick={() => navigate(`/${AppRoute.Film}/${film.id}`)}>
-                Exit
+        Exit
       </button>
       <div className="player__controls">
         <div className="player__controls-row">
           <div className="player__time">
             <progress className="player__progress" value={30} max={100} />
             <div className="player__toggler" style={{ left: '30%' }}>
-                    Toggler
+              Toggler
             </div>
           </div>
           <div className="player__time-value">1:30:29</div>

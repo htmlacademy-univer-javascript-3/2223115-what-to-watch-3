@@ -1,10 +1,9 @@
 import { Helmet } from 'react-helmet-async';
-import { MyListProps } from './my-list-screen-props';
 import FilmsList from '../../components/films-list/films-list';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 
-export default function MyListScreen({filmCards}: MyListProps): JSX.Element {
+export default function MyListScreen(): JSX.Element {
   const myFilmCards = filmCards.filter((film) => film.isFavorite === true);
   return (
     <div className="user-page">

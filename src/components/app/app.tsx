@@ -1,4 +1,3 @@
-import { AppProps } from './app-props';
 import { AppRoute } from '../../const';
 import { Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
@@ -15,14 +14,15 @@ import Spinner from '../spinner/spinner';
 import HistoryRouter from '../history-route/history-route';
 import browserHistory from '../../browser-history';
 import { getAuthorizationStatus } from '../../store/user-process/user-process.selectors';
-import { getFilmsDataLoadingStatus } from '../../store/wtw-data/wtw-data.selectors';
+import { getFilmsDataLoadingStatus, getPromoFilmDataLoadingStatus } from '../../store/wtw-data/wtw-data.selectors';
 
-export default function App({promoFilmCard}: AppProps): JSX.Element {
+export default function App(): JSX.Element {
 
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const isFilmsDataLoading = useAppSelector(getFilmsDataLoadingStatus);
+  const isPromoFilmDataLoading = useAppSelector(getPromoFilmDataLoadingStatus);
 
-  if (isFilmsDataLoading) {
+  if (isFilmsDataLoading && isPromoFilmDataLoading) {
     return <Spinner/>;
   }
 
@@ -32,7 +32,7 @@ export default function App({promoFilmCard}: AppProps): JSX.Element {
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<MainScreen promoFilmCard={promoFilmCard}/>}
+            element={<MainScreen/>}
           />
           <Route
             path={AppRoute.SignIn}
@@ -42,7 +42,7 @@ export default function App({promoFilmCard}: AppProps): JSX.Element {
             path={AppRoute.MyList}
             element={
               <PrivateRoute authorizationStatus={authorizationStatus}>
-                <MyListScreen filmCards={[]}/>
+                <MyListScreen/>
               </PrivateRoute>
             }
           />

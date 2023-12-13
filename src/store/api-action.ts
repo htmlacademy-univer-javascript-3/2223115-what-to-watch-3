@@ -9,6 +9,7 @@ import { Film } from '../types/film';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 import { ReviewData } from '../types/review';
+import { PromoFilm } from '../types/promo-film';
 import { saveToken, dropToken } from '../services/token';
 import { NewReviewData } from '../types/new-review-data';
 
@@ -65,6 +66,30 @@ export const fetchReviewsAction = createAsyncThunk<ReviewData[], {id: string}, {
   }
 );
 
+export const addReviewAction = createAsyncThunk<void, NewReviewData, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/addReview',
+  async ({id, comment, rating}, {dispatch, extra: api}) => {
+    await api.post<NewReviewData>(`${APIRoute.Comments}/${id}`, {comment, rating});
+    dispatch(redirectToRoute(`${AppRoute.Film}/${id}`));
+  },
+);
+
+export const fetchPromoFilmAction = createAsyncThunk<PromoFilm, undefined, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchPromoFilm',
+  async (_arg, {extra: api}) => {
+    const {data} = await api.get<PromoFilm>(APIRoute.Promo);
+    return data;
+  }
+);
+
 export const checkAuthAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
   state: State;
@@ -101,17 +126,5 @@ export const logoutAction = createAsyncThunk<undefined, undefined, {
     await api.delete(APIRoute.Logout);
     dropToken();
     return undefined;
-  },
-);
-
-export const addReviewAction = createAsyncThunk<void, NewReviewData, {
-  dispatch: AppDispatch;
-  state: State;
-  extra: AxiosInstance;
-}>(
-  'data/addReview',
-  async ({id, comment, rating}, {dispatch, extra: api}) => {
-    await api.post<NewReviewData>(`${APIRoute.Comments}/${id}`, {comment, rating});
-    dispatch(redirectToRoute(`${AppRoute.Film}/${id}`));
   },
 );

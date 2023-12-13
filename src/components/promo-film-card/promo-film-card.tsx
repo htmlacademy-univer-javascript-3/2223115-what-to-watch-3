@@ -1,17 +1,20 @@
-import { PromoFilmCardProps } from './promo-film-card-props';
 import { AppRoute } from '../../const';
 import { useNavigate } from 'react-router-dom';
 import Header from '../header/header';
+import { useAppSelector } from '../../hooks';
+import { getPromoFilm } from '../../store/wtw-data/wtw-data.selectors';
+import { PromoFilm } from '../../types/promo-film';
 
-export default function PromoFilmCard({name, genre, released}: PromoFilmCardProps): JSX.Element{
+export default function PromoFilmCard(): JSX.Element{
   const navigate = useNavigate();
+  const promoFilm = useAppSelector(getPromoFilm) as PromoFilm;
 
   return (
     <section className="film-card">
       <div className="film-card__bg">
         <img
-          src="img/bg-the-grand-budapest-hotel.jpg"
-          alt="The Grand Budapest Hotel"
+          src={promoFilm.backgroundImage}
+          alt={promoFilm.name}
         />
       </div>
       <h1 className="visually-hidden">WTW</h1>
@@ -20,21 +23,21 @@ export default function PromoFilmCard({name, genre, released}: PromoFilmCardProp
         <div className="film-card__info">
           <div className="film-card__poster">
             <img
-              src="img/the-grand-budapest-hotel-poster.jpg"
-              alt={`${name} poster`}
+              src={promoFilm.posterImage}
+              alt={`${promoFilm.name} poster`}
               width={218}
               height={327}
             />
           </div>
           <div className="film-card__desc">
-            <h2 className="film-card__title">{name}</h2>
+            <h2 className="film-card__title">{promoFilm.name}</h2>
             <p className="film-card__meta">
-              <span className="film-card__genre">{genre}</span>
-              <span className="film-card__year">{released}</span>
+              <span className="film-card__genre">{promoFilm.genre}</span>
+              <span className="film-card__year">{promoFilm.released}</span>
             </p>
             <div className="film-card__buttons">
               <button className="btn btn--play film-card__button" type="button" onClick={() => {
-                navigate(`${AppRoute.Player}/0`);
+                navigate(`${AppRoute.Player}/${promoFilm.id}`);
               }}
               >
                 <svg viewBox="0 0 19 19" width={19} height={19}>
