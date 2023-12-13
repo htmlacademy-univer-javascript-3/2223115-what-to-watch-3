@@ -14,10 +14,13 @@ import { useAppSelector } from '../../hooks';
 import Spinner from '../spinner/spinner';
 import HistoryRouter from '../history-route/history-route';
 import browserHistory from '../../browser-history';
+import { getAuthorizationStatus } from '../../store/user-process/user-process.selectors';
+import { getFilmsDataLoadingStatus } from '../../store/wtw-data/wtw-data.selectors';
 
-export default function App({promoFilmCard, filmCards}: AppProps): JSX.Element {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const isFilmsDataLoading = useAppSelector((state) => state.isFilmsDataLoading);
+export default function App({promoFilmCard}: AppProps): JSX.Element {
+
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const isFilmsDataLoading = useAppSelector(getFilmsDataLoadingStatus);
 
   if (isFilmsDataLoading) {
     return <Spinner/>;
@@ -39,7 +42,7 @@ export default function App({promoFilmCard, filmCards}: AppProps): JSX.Element {
             path={AppRoute.MyList}
             element={
               <PrivateRoute authorizationStatus={authorizationStatus}>
-                <MyListScreen filmCards={filmCards}/>
+                <MyListScreen filmCards={[]}/>
               </PrivateRoute>
             }
           />
@@ -52,7 +55,7 @@ export default function App({promoFilmCard, filmCards}: AppProps): JSX.Element {
           </Route>
           <Route path={AppRoute.Player}>
             <Route index element={<NotFoundScreen/>}/>
-            <Route path=':id' element={<PlayerScreen filmCards={filmCards}/>}/>
+            <Route path=':id' element={<PlayerScreen/>}/>
           </Route>
           <Route
             path={AppRoute.NotFound}

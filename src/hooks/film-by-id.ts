@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '.';
 import { fetchFilmAction, fetchSimilarFilmsAction, fetchReviewsAction } from '../store/api-action';
 import { Film } from '../types/film';
 import { ReviewData } from '../types/review';
+import { getFilm, getSimilarFilms, getReviews } from '../store/wtw-data/wtw-data.selectors';
 
 export default function useFilmInfoById() {
   const {id} = useParams();
@@ -17,9 +18,9 @@ export default function useFilmInfoById() {
     }
   }, [dispatch, id]);
 
-  const film = useAppSelector((state) => state.film) as Film;
-  const similarFilms = useAppSelector((state) => state.similarFilms);
-  const reviews = useAppSelector((state) => state.reviews);
+  const film = useAppSelector(getFilm) as Film;
+  const similarFilms = useAppSelector(getSimilarFilms);
+  const reviews = useAppSelector(getReviews);
 
   const result: [Film, Film[], ReviewData[]] = [film, similarFilms, reviews];
 

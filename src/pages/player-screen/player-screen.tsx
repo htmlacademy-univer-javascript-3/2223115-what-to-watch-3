@@ -1,21 +1,21 @@
 import { Helmet } from 'react-helmet-async';
-import { PlayerScreenProps } from './player-screen-props';
-import { useParams, useNavigate } from 'react-router-dom';
-import { Film } from '../../types/film';
+import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../const';
+import { useAppSelector } from '../../hooks';
+import { getFilm } from '../../store/wtw-data/wtw-data.selectors';
+import { Film } from '../../types/film';
 
-export default function PlayerScreen({filmCards}: PlayerScreenProps): JSX.Element {
-  const {id} = useParams();
-  const currentFilm = filmCards.find((film) => film.id === id) as Film;
+export default function PlayerScreen(): JSX.Element {
+  const film = useAppSelector(getFilm) as Film;
   const navigate = useNavigate();
 
   return (
     <div className="player">
       <Helmet>
-        <title>WTW: Плеер {currentFilm.name}</title>
+        <title>WTW: Плеер {film.name}</title>
       </Helmet>
-      <video src={currentFilm.videoLink} className="player__video" poster={currentFilm.posterImage} />
-      <button type="button" className="player__exit" onClick={() => navigate(`/${AppRoute.Film}/${currentFilm.id}`)}>
+      <video src={film.videoLink} className="player__video" poster={film.posterImage} />
+      <button type="button" className="player__exit" onClick={() => navigate(`/${AppRoute.Film}/${film.id}`)}>
                 Exit
       </button>
       <div className="player__controls">

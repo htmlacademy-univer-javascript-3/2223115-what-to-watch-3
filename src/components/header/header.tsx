@@ -3,6 +3,7 @@ import Logout from '../logout/logout';
 import Logo from '../logo/logo';
 import { useAppSelector } from '../../hooks';
 import { AuthorizationStatus } from '../../const';
+import { getAuthorizationStatus } from '../../store/user-process/user-process.selectors';
 import cn from 'classnames';
 
 type HeaderProps = {
@@ -10,7 +11,7 @@ type HeaderProps = {
 }
 
 export default function Header({children}: HeaderProps): JSX.Element {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   const headerClass = cn('page-header', {
     'user-page__head': children,

@@ -3,11 +3,12 @@ import { AppRoute } from '../../const';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { logoutAction } from '../../store/api-action';
 import { useNavigate } from 'react-router-dom';
+import { getUserInfo } from '../../store/user-process/user-process.selectors';
 
 export default function Logout(): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const avatarUrl = useAppSelector((state) => state.userInfo?.avatarUrl);
+  const avatarUrl = useAppSelector(getUserInfo)?.avatarUrl;
 
   return(
     <ul className="user-block">

@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 import { AppProps } from './components/app/app-props';
-import { films } from './mocks/films';
 import { store } from './store';
 import { Provider } from 'react-redux';
 import { fetchFilmsAction, checkAuthAction } from './store/api-action';
@@ -20,7 +19,6 @@ const appData: AppProps = {
     genre: 'Drama',
     released: '2014',
   },
-  filmCards: films,
 };
 
 root.render(
@@ -28,7 +26,6 @@ root.render(
     <Provider store={store}>
       <App
         promoFilmCard={appData.promoFilmCard}
-        filmCards={appData.filmCards}
       />
     </Provider>
   </React.StrictMode>

@@ -6,9 +6,10 @@ import { AppRoute } from '../../const';
 import { useAppSelector } from '../../hooks';
 import Logo from '../../components/logo/logo';
 import Logout from '../../components/logout/logout';
+import { getFilm } from '../../store/wtw-data/wtw-data.selectors';
 
 export default function AddReviewScreen(): JSX.Element {
-  const currentFilm = useAppSelector((state) => state.film) as Film;
+  const currentFilm = useAppSelector(getFilm) as Film;
 
   return (
     <section className="film-card film-card--full" style={{backgroundColor: currentFilm.backgroundColor}}>

@@ -9,12 +9,14 @@ import useFilmInfoById from '../../hooks/film-by-id';
 import Spinner from '../../components/spinner/spinner';
 import Header from '../../components/header/header';
 import { AuthorizationStatus } from '../../const';
+import { getFilmDataLoadingStatus } from '../../store/wtw-data/wtw-data.selectors';
+import { getAuthorizationStatus } from '../../store/user-process/user-process.selectors';
 
 export default function FilmScreen(): JSX.Element {
   const [film, similarFilms, reviews] = useFilmInfoById();
   const navigate = useNavigate();
-  const isFilmDataLoading = useAppSelector((state) => state.isFilmDataLoading);
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const isFilmDataLoading = useAppSelector(getFilmDataLoadingStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   return (
     <div>
