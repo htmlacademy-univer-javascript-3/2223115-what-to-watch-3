@@ -1,15 +1,16 @@
 import { AppRoute } from '../../const';
 import { useNavigate } from 'react-router-dom';
 import Header from '../header/header';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getPromoFilm } from '../../store/wtw-data/wtw-data.selectors';
 import { Film } from '../../types/film';
 import MyListButton from '../my-list-button/my-list-button';
+import { fetchFilmAction } from '../../store/api-action';
 
 export default function PromoFilmCard(): JSX.Element{
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const promoFilm = useAppSelector(getPromoFilm) as Film;
-
 
   return (
     <section className="film-card">
@@ -39,7 +40,8 @@ export default function PromoFilmCard(): JSX.Element{
             </p>
             <div className="film-card__buttons">
               <button className="btn btn--play film-card__button" type="button" onClick={() => {
-                navigate(`${AppRoute.Player}/${promoFilm.id}`);
+                dispatch(fetchFilmAction({id: promoFilm.id}));
+                navigate(`/${AppRoute.Player}/${promoFilm.id}`);
               }}
               >
                 <svg viewBox="0 0 19 19" width={19} height={19}>
