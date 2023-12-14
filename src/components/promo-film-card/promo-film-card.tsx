@@ -2,13 +2,13 @@ import { AppRoute } from '../../const';
 import { useNavigate } from 'react-router-dom';
 import Header from '../header/header';
 import { useAppSelector } from '../../hooks';
-import { getPromoFilm, getFavoriteFilms } from '../../store/wtw-data/wtw-data.selectors';
+import { getPromoFilm } from '../../store/wtw-data/wtw-data.selectors';
 import { Film } from '../../types/film';
+import MyListButton from '../my-list-button/my-list-button';
 
 export default function PromoFilmCard(): JSX.Element{
   const navigate = useNavigate();
   const promoFilm = useAppSelector(getPromoFilm) as Film;
-  const favoriteFilms = useAppSelector(getFavoriteFilms);
 
 
   return (
@@ -47,13 +47,7 @@ export default function PromoFilmCard(): JSX.Element{
                 </svg>
                 <span>Play</span>
               </button>
-              <button className="btn btn--list film-card__button" type="button">
-                <svg viewBox="0 0 19 20" width={19} height={20}>
-                  <use xlinkHref="#add" />
-                </svg>
-                <span>My list</span>
-                <span className="film-card__count">{favoriteFilms.length}</span>
-              </button>
+              <MyListButton/>
             </div>
           </div>
         </div>
