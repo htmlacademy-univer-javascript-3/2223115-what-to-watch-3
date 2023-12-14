@@ -1,4 +1,30 @@
 import { store } from '../store';
+import { AuthorizationStatus } from '../const';
+import { Film } from './film';
+import { ReviewData } from './review';
+import { UserData } from './user-data';
+import { Genre } from './genre';
+
+export type UserProcess = {
+  authorizationStatus: AuthorizationStatus;
+  userInfo: UserData | undefined;
+}
+
+export type WtwData = {
+  films: Film[];
+  favoriteFilms: Film[];
+  isFilmsDataLoading: boolean;
+  isPromoFilmDataLoading: boolean;
+  isFilmDataLoading: boolean;
+  film: Film | undefined;
+  similarFilms: Film[];
+  reviews: ReviewData[];
+  promoFilm: Film | undefined;
+}
+
+export type WtwProcess = {
+  genre: Genre;
+}
 
 export type State = ReturnType<typeof store.getState>;
 

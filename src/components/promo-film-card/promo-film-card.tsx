@@ -1,17 +1,28 @@
-import { PromoFilmCardProps } from './promo-film-card-props';
 import { AppRoute } from '../../const';
 import { useNavigate } from 'react-router-dom';
 import Header from '../header/header';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { getPromoFilm } from '../../store/wtw-data/wtw-data.selectors';
+import { Film } from '../../types/film';
+import MyListButton from '../my-list-button/my-list-button';
+import { fetchFilmAction } from '../../store/api-action';
+import { useEffect } from 'react';
 
-export default function PromoFilmCard({name, genre, released}: PromoFilmCardProps): JSX.Element{
+export default function PromoFilmCard(): JSX.Element{
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const promoFilm = useAppSelector(getPromoFilm) as Film;
+
+  useEffect(() => {
+    dispatch(fetchFilmAction({id: promoFilm.id}));
+  });
 
   return (
     <section className="film-card">
       <div className="film-card__bg">
         <img
-          src="img/bg-the-grand-budapest-hotel.jpg"
-          alt="The Grand Budapest Hotel"
+          src={promoFilm.backgroundImage}
+          alt={promoFilm.name}
         />
       </div>
       <h1 className="visually-hidden">WTW</h1>
@@ -20,21 +31,21 @@ export default function PromoFilmCard({name, genre, released}: PromoFilmCardProp
         <div className="film-card__info">
           <div className="film-card__poster">
             <img
-              src="img/the-grand-budapest-hotel-poster.jpg"
-              alt={`${name} poster`}
+              src={promoFilm.posterImage}
+              alt={`${promoFilm.name} poster`}
               width={218}
               height={327}
             />
           </div>
           <div className="film-card__desc">
-            <h2 className="film-card__title">{name}</h2>
+            <h2 className="film-card__title">{promoFilm.name}</h2>
             <p className="film-card__meta">
-              <span className="film-card__genre">{genre}</span>
-              <span className="film-card__year">{released}</span>
+              <span className="film-card__genre">{promoFilm.genre}</span>
+              <span className="film-card__year">{promoFilm.released}</span>
             </p>
             <div className="film-card__buttons">
               <button className="btn btn--play film-card__button" type="button" onClick={() => {
-                navigate(`${AppRoute.Player}/0`);
+                navigate(`/${AppRoute.Player}/${promoFilm.id}`);
               }}
               >
                 <svg viewBox="0 0 19 19" width={19} height={19}>
@@ -42,13 +53,7 @@ export default function PromoFilmCard({name, genre, released}: PromoFilmCardProp
                 </svg>
                 <span>Play</span>
               </button>
-              <button className="btn btn--list film-card__button" type="button">
-                <svg viewBox="0 0 19 20" width={19} height={20}>
-                  <use xlinkHref="#add" />
-                </svg>
-                <span>My list</span>
-                <span className="film-card__count">9</span>
-              </button>
+              <MyListButton/>
             </div>
           </div>
         </div>

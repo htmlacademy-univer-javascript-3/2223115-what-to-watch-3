@@ -6,20 +6,21 @@ import { AppRoute } from '../../const';
 import { useAppSelector } from '../../hooks';
 import Logo from '../../components/logo/logo';
 import Logout from '../../components/logout/logout';
+import { getFilm } from '../../store/wtw-data/wtw-data.selectors';
 
 export default function AddReviewScreen(): JSX.Element {
-  const currentFilm = useAppSelector((state) => state.film) as Film;
+  const film = useAppSelector(getFilm) as Film;
 
   return (
-    <section className="film-card film-card--full" style={{backgroundColor: currentFilm.backgroundColor}}>
+    <section className="film-card film-card--full" style={{backgroundColor: film.backgroundColor}}>
       <Helmet>
-        <title>WTW: Оценка {currentFilm.name}</title>
+        <title>WTW: Оценка {film.name}</title>
       </Helmet>
       <div className="film-card__header">
         <div className="film-card__bg">
           <img
-            src={currentFilm.backgroundImage}
-            alt={currentFilm.name}
+            src={film.backgroundImage}
+            alt={film.name}
           />
         </div>
         <h1 className="visually-hidden">WTW</h1>
@@ -28,7 +29,7 @@ export default function AddReviewScreen(): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={`/${AppRoute.Film}/${currentFilm.id}`} className="breadcrumbs__link">{currentFilm.name}</Link>
+                <Link to={`/${AppRoute.Film}/${film.id}`} className="breadcrumbs__link">{film.name}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -39,15 +40,15 @@ export default function AddReviewScreen(): JSX.Element {
         </header>
         <div className="film-card__poster film-card__poster--small">
           <img
-            src={currentFilm.posterImage}
-            alt={`${currentFilm.name }poster`}
+            src={film.posterImage}
+            alt={`${film.name }poster`}
             width={218}
             height={327}
           />
         </div>
       </div>
       <div className="add-review">
-        <ReviewsForm id={currentFilm.id}/>
+        <ReviewsForm id={film.id}/>
       </div>
     </section>
   );

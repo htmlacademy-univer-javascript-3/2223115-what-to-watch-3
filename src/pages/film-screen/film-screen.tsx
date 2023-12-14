@@ -5,16 +5,23 @@ import { AppRoute } from '../../const';
 import Tabs from '../../components/tabs/tabs';
 import FilmsList from '../../components/films-list/films-list';
 import { useAppSelector } from '../../hooks';
-import useFilmInfoById from '../../hooks/film-by-id';
+import useFilmById from '../../hooks/film-by-id';
+import useSimilarFilmsById from '../../hooks/similar-film-by-id';
+import useReviewsById from '../../hooks/reviews-by-id';
 import Spinner from '../../components/spinner/spinner';
 import Header from '../../components/header/header';
 import { AuthorizationStatus } from '../../const';
+import { getFilmDataLoadingStatus } from '../../store/wtw-data/wtw-data.selectors';
+import { getAuthorizationStatus } from '../../store/user-process/user-process.selectors';
+import MyListButton from '../../components/my-list-button/my-list-button';
 
 export default function FilmScreen(): JSX.Element {
-  const [film, similarFilms, reviews] = useFilmInfoById();
+  const film = useFilmById();
+  const similarFilms = useSimilarFilmsById();
+  const reviews = useReviewsById();
   const navigate = useNavigate();
-  const isFilmDataLoading = useAppSelector((state) => state.isFilmDataLoading);
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const isFilmDataLoading = useAppSelector(getFilmDataLoadingStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   return (
     <div>
@@ -50,13 +57,7 @@ export default function FilmScreen(): JSX.Element {
                       </svg>
                       <span>Play</span>
                     </button>
-                    <button className="btn btn--list film-card__button" type="button">
-                      <svg viewBox="0 0 19 20" width={19} height={20}>
-                        <use xlinkHref="#add" />
-                      </svg>
-                      <span>My list</span>
-                      <span className="film-card__count">9</span>
-                    </button>
+                    <MyListButton/>
                     {authorizationStatus === AuthorizationStatus.Auth ?
                       <Link to={`${AppRoute.AddReview}`} className="btn film-card__button">
                         Add review

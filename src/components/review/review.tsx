@@ -1,16 +1,6 @@
-type ReviewProps = {
-  date: string;
-  user: string;
-  comment: string;
-  rating: number;
-}
-
-const getDate = (date: string) => {
-  const newDate = new Date(Date.parse(date));
-  return newDate.toLocaleString('en-US', {year: 'numeric', month: 'long', day: 'numeric'});
-};
-
-const getDateTime = (date:string) => date.split('T')[0];
+import { getDate } from '../../utils/get-date';
+import { getDateTime } from '../../utils/get-date-time';
+import { ReviewProps } from './review-props';
 
 export default function Review({date, user, comment, rating}: ReviewProps): JSX.Element {
   return (

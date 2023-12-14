@@ -1,16 +1,5 @@
-type FilmDetailsProps = {
-  director: string;
-  starring: string[];
-  runTime: number;
-  genre: string;
-  released: string;
-}
-
-const getRunTime = (runTime: number) => {
-  const hours = Math.floor(runTime / 60);
-  const minutes = runTime - hours * 60;
-  return `${hours}h ${minutes}m`;
-};
+import { getRunTime } from '../../utils/get-run-time';
+import { FilmDetailsProps } from './tabs-props';
 
 export default function FilmDetails({director, starring, runTime, genre, released}: FilmDetailsProps): JSX.Element {
   return (

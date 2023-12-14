@@ -3,13 +3,7 @@ import FilmOverview from './tab-film-overview';
 import FilmDetails from './tab-film-details';
 import FilmReviews from './tab-film-reviews';
 import { useEffect, useState } from 'react';
-import { Film } from '../../types/film';
-import { ReviewData } from '../../types/review';
-
-type TabsProps = {
-  film: Film;
-  reviews: ReviewData[];
-}
+import { TabsProps } from './tabs-props';
 
 export default function Tabs({film, reviews}: TabsProps): JSX.Element{
   const [activeTab, setActiveTab] = useState(
