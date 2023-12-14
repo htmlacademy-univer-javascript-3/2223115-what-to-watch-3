@@ -6,11 +6,16 @@ import { getPromoFilm } from '../../store/wtw-data/wtw-data.selectors';
 import { Film } from '../../types/film';
 import MyListButton from '../my-list-button/my-list-button';
 import { fetchFilmAction } from '../../store/api-action';
+import { useEffect } from 'react';
 
 export default function PromoFilmCard(): JSX.Element{
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const promoFilm = useAppSelector(getPromoFilm) as Film;
+
+  useEffect(() => {
+    dispatch(fetchFilmAction({id: promoFilm.id}));
+  });
 
   return (
     <section className="film-card">
@@ -40,7 +45,6 @@ export default function PromoFilmCard(): JSX.Element{
             </p>
             <div className="film-card__buttons">
               <button className="btn btn--play film-card__button" type="button" onClick={() => {
-                dispatch(fetchFilmAction({id: promoFilm.id}));
                 navigate(`/${AppRoute.Player}/${promoFilm.id}`);
               }}
               >
