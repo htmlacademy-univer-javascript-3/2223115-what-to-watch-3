@@ -5,8 +5,7 @@ import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import ShownMoreButton from '../show-more-button/show-more-button';
-
-const DEFAULT_FILMS_COUNT = 8;
+import { DEFAULT_FILMS_COUNT } from '../../const';
 
 export default function FilmsList({smallFilmCards, id, genre}: FilmsListProps): JSX.Element {
   const [idActiveFilm, setIdActiveFilm] = useState('');

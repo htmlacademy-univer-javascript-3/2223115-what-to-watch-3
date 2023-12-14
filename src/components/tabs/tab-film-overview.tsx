@@ -1,10 +1,4 @@
-type FilmOverviewProps = {
-  rating: number;
-  scoresCount: number;
-  description: string;
-  director: string;
-  starring: string[];
-}
+import { FilmOverviewProps } from './tabs-props';
 
 export default function FilmOverview({rating, scoresCount, description, director, starring}: FilmOverviewProps): JSX.Element {
   return (

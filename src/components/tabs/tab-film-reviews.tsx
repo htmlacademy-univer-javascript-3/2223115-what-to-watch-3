@@ -1,10 +1,8 @@
 import { ReviewData } from '../../types/review';
 import Review from '../review/review';
+import { FilmReviewsProps } from './tabs-props';
 import { useMemo } from 'react';
 
-type FilmReviewsProps = {
-  reviews: ReviewData[];
-}
 
 const splitReviews = (reviews: ReviewData[]) => {
   const separator = Math.ceil(reviews.length / 2);

@@ -1,3 +1,7 @@
+export const SECOND_COUNT_IN_HOUR = 3600;
+export const SECOND_COUNT_IN_MINUTE = 60;
+export const DEFAULT_FILMS_COUNT = 8;
+
 export enum AppRoute {
   Main = '/',
   SignIn = 'login',
