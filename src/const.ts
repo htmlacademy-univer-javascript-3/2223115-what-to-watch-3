@@ -6,7 +6,7 @@ export enum RatingText {
   Bad = 'Bad',
   Normal = 'Normal',
   Good = 'Good',
-  VeryGood = 'Very Good',
+  VeryGood = 'Very good',
   Awesome = 'Awesome',
 }
 
