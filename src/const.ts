@@ -2,6 +2,21 @@ export const SECOND_COUNT_IN_HOUR = 3600;
 export const SECOND_COUNT_IN_MINUTE = 60;
 export const DEFAULT_FILMS_COUNT = 8;
 
+export enum RatingText {
+  Bad = 'Bad',
+  Normal = 'Normal',
+  Good = 'Good',
+  VeryGood = 'Very Good',
+  Awesome = 'Awesome',
+}
+
+export enum RatingNumber {
+  Bad = 3,
+  Normal = 5,
+  Good = 8,
+  VeryGood = 10,
+}
+
 export enum AppRoute {
   Main = '/',
   SignIn = 'login',
