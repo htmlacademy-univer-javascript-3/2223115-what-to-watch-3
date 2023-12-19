@@ -1,5 +1,4 @@
-import { getDate } from '../../utils/get-date';
-import { getDateTime } from '../../utils/get-date-time';
+import { getDate, getDateTime } from '../../utils/change-date-format';
 import { ReviewProps } from './review-props';
 
 export default function Review({date, user, comment, rating}: ReviewProps): JSX.Element {
