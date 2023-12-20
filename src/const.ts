@@ -1,6 +1,7 @@
 export const SECOND_COUNT_IN_HOUR = 3600;
 export const SECOND_COUNT_IN_MINUTE = 60;
 export const DEFAULT_FILMS_COUNT = 8;
+export const DEFAULT_GENRE = 'All genres';
 
 export enum RatingText {
   Bad = 'Bad',
