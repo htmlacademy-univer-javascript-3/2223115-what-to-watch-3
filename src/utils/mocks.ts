@@ -3,6 +3,10 @@ import { Film } from '../types/film';
 import { PromoFilm } from '../types/promo-film';
 import { ReviewData } from '../types/review';
 import { UserData } from '../types/user-data';
+import { Action } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { createApi } from '../services/api';
+import { State } from '../types/state';
 
 export const makeFakeFilm = (): Film => ({
   id: random.alpha({count: 10}),
@@ -51,3 +55,9 @@ export const makeFakeUserInfo = (): UserData => ({
   email: internet.email(),
   token: 'Z3VzeWFAbWFpbC5ydQ=='
 });
+
+export const makeFakeFilmId = (): string => random.alpha({count: 10});
+
+export type AppThunkDispatch = ThunkDispatch<State, ReturnType<typeof createApi>, Action>;
+
+export const extractActionsTypes = (actions: Action<string>[]) => actions.map(({ type }) => type);
