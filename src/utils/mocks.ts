@@ -2,6 +2,7 @@ import { name, random, finance, image, internet, commerce, datatype } from 'fake
 import { Film } from '../types/film';
 import { PromoFilm } from '../types/promo-film';
 import { ReviewData } from '../types/review';
+import { UserData } from '../types/user-data';
 
 export const makeFakeFilm = (): Film => ({
   id: random.alpha({count: 10}),
@@ -42,4 +43,11 @@ export const makeFakeReview = (): ReviewData => ({
   user: name.firstName(),
   comment: random.words(),
   rating: Number(finance.amount(1, 10, 0)),
+});
+
+export const makeFakeUserInfo = (): UserData => ({
+  name: name.firstName(),
+  avatarUrl: internet.url(),
+  email: internet.email(),
+  token: 'Z3VzeWFAbWFpbC5ydQ=='
 });
