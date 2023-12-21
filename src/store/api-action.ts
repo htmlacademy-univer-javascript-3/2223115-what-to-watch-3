@@ -6,6 +6,7 @@ import {
 } from './action';
 import { APIRoute, AppRoute } from '../const';
 import { Film } from '../types/film';
+import { PromoFilm } from '../types/promo-film';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 import { ReviewData } from '../types/review';
@@ -77,14 +78,14 @@ export const addReviewAction = createAsyncThunk<void, NewReviewData, {
   },
 );
 
-export const fetchPromoFilmAction = createAsyncThunk<Film, undefined, {
+export const fetchPromoFilmAction = createAsyncThunk<PromoFilm, undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'data/fetchPromoFilm',
   async (_arg, {extra: api}) => {
-    const {data} = await api.get<Film>(APIRoute.Promo);
+    const {data} = await api.get<PromoFilm>(APIRoute.Promo);
     return data;
   }
 );
@@ -113,14 +114,15 @@ export const changeFavoriteStatusAction = createAsyncThunk<void, {id: string; st
   }
 );
 
-export const checkAuthAction = createAsyncThunk<void, undefined, {
+export const checkAuthAction = createAsyncThunk<UserData, undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'user/checkAuth',
   async (_arg, {extra: api}) => {
-    await api.get(APIRoute.Login);
+    const {data} = await api.get<UserData>(APIRoute.Login);
+    return data;
   }
 );
 

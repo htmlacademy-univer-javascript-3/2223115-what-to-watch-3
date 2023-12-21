@@ -4,6 +4,7 @@ import { Film } from './film';
 import { ReviewData } from './review';
 import { UserData } from './user-data';
 import { Genre } from './genre';
+import { PromoFilm } from './promo-film';
 
 export type UserProcess = {
   authorizationStatus: AuthorizationStatus;
@@ -19,7 +20,7 @@ export type WtwData = {
   film: Film | undefined;
   similarFilms: Film[];
   reviews: ReviewData[];
-  promoFilm: Film | undefined;
+  promoFilm: PromoFilm | undefined;
 }
 
 export type WtwProcess = {

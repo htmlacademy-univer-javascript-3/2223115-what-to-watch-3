@@ -5,7 +5,7 @@ import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import ShownMoreButton from '../show-more-button/show-more-button';
-import { DEFAULT_FILMS_COUNT } from '../../const';
+import { DEFAULT_FILMS_COUNT, DEFAULT_GENRE } from '../../const';
 
 export default function FilmsList({smallFilmCards, id, genre}: FilmsListProps): JSX.Element {
   const [idActiveFilm, setIdActiveFilm] = useState('');
@@ -15,7 +15,7 @@ export default function FilmsList({smallFilmCards, id, genre}: FilmsListProps): 
   const navigate = useNavigate();
 
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const relevantFilms = genre !== 'All genres'
+  const relevantFilms = genre !== DEFAULT_GENRE
     ? smallFilmCards.filter((film) => film.id !== id && film.genre === genre)
     : smallFilmCards;
 

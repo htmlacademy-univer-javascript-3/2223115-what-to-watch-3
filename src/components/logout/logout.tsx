@@ -1,14 +1,19 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { logoutAction } from '../../store/api-action';
+import { checkAuthAction, logoutAction } from '../../store/api-action';
 import { useNavigate } from 'react-router-dom';
 import { getUserInfo } from '../../store/user-process/user-process.selectors';
+import { useEffect } from 'react';
 
 export default function Logout(): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const avatarUrl = useAppSelector(getUserInfo)?.avatarUrl;
+
+  useEffect(() => {
+    dispatch(checkAuthAction);
+  },[dispatch]);
 
   return(
     <ul className="user-block">

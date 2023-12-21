@@ -1,4 +1,5 @@
 import { FilmOverviewProps } from './tabs-props';
+import { getTextRepresentationRating } from '../../utils/get-text-representation-rating';
 
 export default function FilmOverview({rating, scoresCount, description, director, starring}: FilmOverviewProps): JSX.Element {
   return (
@@ -6,7 +7,7 @@ export default function FilmOverview({rating, scoresCount, description, director
       <div className="film-rating">
         <div className="film-rating__score">{rating}</div>
         <p className="film-rating__meta">
-          <span className="film-rating__level">Very good</span>
+          <span className="film-rating__level">{getTextRepresentationRating(rating)}</span>
           <span className="film-rating__count">{scoresCount} ratings</span>
         </p>
       </div>
