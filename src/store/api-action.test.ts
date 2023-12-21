@@ -16,12 +16,15 @@ import { State } from '../types/state';
 import {
   checkAuthAction,
   loginAction,
+  logoutAction,
   fetchFavoriteFilmsAction,
   fetchFilmAction,
   fetchFilmsAction,
   fetchPromoFilmAction,
   fetchReviewsAction,
-  fetchSimilarFilmsAction
+  fetchSimilarFilmsAction,
+  addReviewAction,
+  changeFavoriteStatusAction
 } from './api-action';
 import { APIRoute, NameSpace } from '../const';
 import { redirectToRoute } from './action';
@@ -273,6 +276,71 @@ describe('Async actions', () => {
     });
   });
 
+  describe('addReviewAction', () => {
+    const id = makeFakeFilmId();
+    const review = {id: id, comment: '', rating: 0};
+
+    it('dispatch "addReviewAction.pending","addReviewAction.fulfilled" and redirectToRoute when server response 201', async () => {
+      const mockReview = makeFakeUserInfo();
+      mockAxiosAdapter.onPost(`${APIRoute.Comments}/${id}`).reply(201, mockReview);
+
+      await store.dispatch(addReviewAction(review));
+      const emmitedActions = store.getActions();
+      const extractedActionsTypes = extractActionsTypes(emmitedActions);
+
+      expect(extractedActionsTypes).toEqual([
+        addReviewAction.pending.type,
+        redirectToRoute.type,
+        addReviewAction.fulfilled.type
+      ]);
+    });
+
+    it('dispatch "addReviewAction.pending" and "addReviewAction.rejected" when server response 400', async () => {
+      mockAxiosAdapter.onPost(`${APIRoute.Comments}/${id}`).reply(400);
+
+      await store.dispatch(addReviewAction(review));
+      const extractedActionsTypes = extractActionsTypes(store.getActions());
+
+      expect(extractedActionsTypes).toEqual([
+        addReviewAction.pending.type,
+        addReviewAction.rejected.type
+      ]);
+    });
+  });
+
+  describe('changeFavoriteStatusAction', () => {
+    const id = makeFakeFilmId();
+    const status = {id: id, status: 0};
+
+    it('dispatch "changeFavoriteStatusAction.pending","addReviewAction.fulfilled" and "fetchFavoriteFilms.pending" when server response 200', async () => {
+      const mockFavoriteFilm = makeFakeFilm();
+      mockAxiosAdapter.onPost(`${APIRoute.Favorite}/${id}/${status.status}`).reply(200, mockFavoriteFilm);
+
+      await store.dispatch(changeFavoriteStatusAction(status));
+      const emmitedActions = store.getActions();
+      const extractedActionsTypes = extractActionsTypes(emmitedActions);
+
+      expect(extractedActionsTypes).toEqual([
+        changeFavoriteStatusAction.pending.type,
+        fetchFavoriteFilmsAction.pending.type,
+        changeFavoriteStatusAction.fulfilled.type
+      ]);
+    });
+
+    it('dispatch "changeFavoriteStatusAction.pending" and "addReviewAction.rejected" when server response 400', async () => {
+      mockAxiosAdapter.onPost(`${APIRoute.Favorite}/${id}/${status.status}`).reply(400);
+
+      await store.dispatch(changeFavoriteStatusAction(status));
+      const emmitedActions = store.getActions();
+      const extractedActionsTypes = extractActionsTypes(emmitedActions);
+
+      expect(extractedActionsTypes).toEqual([
+        changeFavoriteStatusAction.pending.type,
+        changeFavoriteStatusAction.rejected.type
+      ]);
+    });
+  });
+
   describe('loginAction', () => {
     const userData = {login: '', password: ''};
     it('dispatch "loginAction.pending","loginAction.fulfilled" and redirectToRoute when server response 200', async () => {
@@ -305,6 +373,21 @@ describe('Async actions', () => {
       expect(extractedActionsTypes).toEqual([
         loginAction.pending.type,
         loginAction.rejected.type
+      ]);
+    });
+  });
+
+  describe('logoutAction', () => {
+    it('dispatch "logoutAction.pending","logoutAction.fulfilled" when server response 204', async () => {
+      mockAxiosAdapter.onDelete(APIRoute.Logout).reply(204);
+
+      await store.dispatch(logoutAction());
+      const emmitedActions = store.getActions();
+      const extractedActionsTypes = extractActionsTypes(emmitedActions);
+
+      expect(extractedActionsTypes).toEqual([
+        logoutAction.pending.type,
+        logoutAction.fulfilled.type
       ]);
     });
   });
