@@ -7,7 +7,7 @@ export default function NotFoundScreen(): JSX.Element {
       <Helmet>
         <title>WTW: Страница не найдена</title>
       </Helmet>
-      <h1>Ой... Кажется, что-то сломалось.</h1>
+      <h1>Ой... Кажется, что-то сломалось...</h1>
       <br/>
       <Link to='/'>Вернуться на главную</Link>
     </>
